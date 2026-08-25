@@ -1,0 +1,96 @@
+<section class="hero">
+  <div class="hero__content">
+    <h1 class="hero__heading">{{ section.settings.heading }}</h1>
+
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'text' %}
+          <div class="hero-text" {{ block.shopify_attributes }}>
+            {{ block.settings.text }}
+          </div>
+        {% when 'button' %}
+          {% if block.settings.label != blank %}
+            <a
+              href="{{ block.settings.url | default: '#' }}"
+              class="hero-btn hero-btn--{{ block.settings.style | default: 'primary' }}"
+              {{ block.shopify_attributes }}
+            >
+              {{ block.settings.label }}
+            </a>
+          {% endif %}
+      {% endcase %}
+    {% endfor %}
+
+    {% comment %} stat gom riêng ra ngoài {% endcomment %}
+    <div class="hero__stats">
+      {% for block in section.blocks %}
+        {% if block.type == 'stat' %}
+          <div class="hero__stat" {{ block.shopify_attributes }}>
+            <span class="hero__stat-value">{{ block.settings.value }}</span>
+            <span class="hero__stat-label">{{ block.settings.label }}</span>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "class": "hero",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "image_picker", "id": "image_mobile", "label": "Mobile image" },
+    { "type": "checkbox", "id": "show_decorations", "label": "Show star decorations", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Description",
+      "limit": 1,
+      "settings": [{ "type": "richtext", "id": "text", "label": "Text" }]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Shop Now" },
+        { "type": "url", "id": "url", "label": "Link" },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "200+" },
+        { "type": "text", "id": "label", "label": "Label", "default": "International Brands" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        { "type": "text" },
+        { "type": "button" },
+        { "type": "stat", "settings": { "value": "200+", "label": "International Brands" } },
+        { "type": "stat", "settings": { "value": "2,000+", "label": "High-Quality Products" } },
+        { "type": "stat", "settings": { "value": "30,000+", "label": "Happy Customers" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

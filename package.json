@@ -1,0 +1,21 @@
+{
+  "name": "shop-co",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shopify theme Shop.Co — SCSS build pipeline",
+  "scripts": {
+    "sass:build": "sass --no-source-map --style=compressed src/scss/critical.scss:assets/critical.css src/scss/theme.scss:assets/theme.css",
+    "sass:watch": "sass --watch --embed-sources --style=expanded src/scss/critical.scss:assets/critical.css src/scss/theme.scss:assets/theme.css",
+    "build": "npm run sass:build",
+    "dev": "concurrently -n sass,shopify -c cyan,magenta \"npm:sass:watch\" \"shopify theme dev\"",
+    "theme:check": "shopify theme check",
+    "theme:push": "npm run build && shopify theme push"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "sass": "^1.83.4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

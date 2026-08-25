@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "announcement": {
+      "name": "Announcement bar",
+      "message": "Message"
+    }
+  },
+  "blocks": {
+    "header_logo": {
+      "name": "Logo",
+      "logo": "Logo image",
+      "logo_width": "Logo width",
+      "logo_text": "Logo text",
+      "logo_text_info": "Shown when no logo image is uploaded. Defaults to the store name."
+    },
+    "hero_text": {
+      "name": "Text",
+      "text": "Description"
+    }
+  }
+}

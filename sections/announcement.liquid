@@ -1,0 +1,20 @@
+<div class="announcement-bar">
+  {{ section.settings.message }}
+  <button type="button" class="announcement-bar__close" aria-label="{{ 'general.accessibility.close' | t }}">
+    {{ 'close-btn.svg' | asset_url | inline_asset_content }}
+  </button>
+</div>
+{% schema %}
+{
+  "name": "Announcement bar",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "text",
+      "id": "message",
+      "label": "t:sections.announcement.message",
+      "default": "Sign up and get 20% off to your first order."
+    }
+  ]
+}
+{% endschema %}

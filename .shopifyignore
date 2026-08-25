@@ -1,0 +1,10 @@
+.git/
+.gitignore
+.shopifyignore
+.mcp.json
+node_modules/
+*.md
+src/
+package.json
+package-lock.json
+assets/*.map

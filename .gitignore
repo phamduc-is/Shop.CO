@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+*.log
+.shopify/
+.claude/settings.local.json
+
+# CSS build output — sinh ra từ src/scss, không commit
+assets/critical.css
+assets/theme.css
+assets/*.css.map

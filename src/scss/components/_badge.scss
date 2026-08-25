@@ -1,0 +1,22 @@
+@use '../abstracts' as *;
+
+// Badge giảm giá — nền #FF3333 @10%, chữ #FF3333, pill.
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-6) var(--space-14);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-body);
+}
+
+.badge--sale {
+  background-color: var(--color-sale-surface);
+  color: var(--color-sale);
+}
+
+.badge--neutral {
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+}

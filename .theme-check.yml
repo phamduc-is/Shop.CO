@@ -1,0 +1,5 @@
+# Cấu hình Theme Check — https://shopify.dev/docs/storefronts/themes/tools/theme-check
+
+extends: :default
+
+root: .

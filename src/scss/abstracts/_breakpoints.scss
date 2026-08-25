@@ -1,0 +1,28 @@
+// ============================================================================
+// Breakpoints — chỉ khai biến, không sinh CSS.
+// ============================================================================
+
+/// Các mốc media query, dùng qua mixin `respond-to()` / `respond-below()`.
+///
+/// Figma Shop.Co chỉ có 2 artboard: 390px và 1440px. Mốc 'lg' (990px) là ranh
+/// giới mobile/desktop — trùng với @media override token trong
+/// `snippets/css-variables.liquid`. Sửa mốc đó thì nhớ sửa cả file Liquid.
+///
+/// Các mốc còn lại thêm vào để layout không gãy ở tablet/laptop — chúng KHÔNG
+/// có trong design, tự do sửa cho khớp thực tế từng section.
+///
+/// Thêm mốc mới: thêm một dòng vào map, dùng ngay được
+/// `@include respond-to('tên-mới')`.
+$breakpoints: (
+  'sm': 480px,
+  'md': 768px,
+  'lg': 990px,
+  'xl': 1200px,
+  'xxl': 1440px,
+);
+
+/// Bề rộng container tối đa. Ở viewport 1440 cho ra inset đúng 100px mỗi bên
+/// như Figma: (1440 - 1240) ÷ 2 = 100.
+/// Giá trị dùng lúc chạy nằm ở `--container-max` trong css-variables.liquid;
+/// biến Sass này chỉ để tham chiếu khi cần tính toán lúc build.
+$container-max: 1240px;

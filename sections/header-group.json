@@ -1,0 +1,12 @@
+{
+  "name": "Header",
+  "type": "header",
+  "sections": {
+    "announcement": {
+      "type": "announcement"
+    }
+  },
+  "order": [
+    "announcement"
+  ]
+}

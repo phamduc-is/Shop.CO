@@ -1,0 +1,46 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "FIND CLOTHES THAT MATCHES YOUR STYLE",
+        "show_decorations": true
+      },
+      "blocks": {
+        "description": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>"
+          }
+        },
+        "cta": {
+          "type": "button",
+          "settings": {
+            "label": "Shop Now",
+            "style": "primary"
+          }
+        },
+        "stat_brands": {
+          "type": "stat",
+          "settings": { "value": "200+", "label": "International Brands" }
+        },
+        "stat_products": {
+          "type": "stat",
+          "settings": { "value": "2,000+", "label": "High-Quality Products" }
+        },
+        "stat_customers": {
+          "type": "stat",
+          "settings": { "value": "30,000+", "label": "Happy Customers" }
+        }
+      },
+      "block_order": [
+        "description",
+        "cta",
+        "stat_brands",
+        "stat_products",
+        "stat_customers"
+      ]
+    }
+  },
+  "order": ["hero"]
+}

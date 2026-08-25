@@ -1,0 +1,6 @@
+// critical.css — CSS above-the-fold, được preload trong <head>.
+// Chỉ chứa reset, typography base và layout khung. Giữ file này NHỎ.
+// Màu và typography khai báo tại snippets/css-variables.liquid.
+
+@use 'base';
+@use 'layout';

@@ -1,0 +1,5 @@
+// Style riêng cho từng section Shopify.
+// Mỗi section 1 file: _header.scss, _footer.scss, _hero.scss...
+// rồi @forward tại đây.
+
+@forward 'announcement';

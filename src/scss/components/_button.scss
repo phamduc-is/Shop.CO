@@ -1,0 +1,79 @@
+@use '../abstracts' as *;
+
+// Nút pill — radius 62px, xuất hiện 105× trong Figma.
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  padding: var(--btn-padding);
+  border: 1px solid transparent;
+  border-radius: var(--btn-radius);
+  font-family: var(--font-body);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  line-height: var(--line-height-body);
+  text-align: center;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base);
+
+  &[disabled],
+  &[aria-disabled='true'] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+
+  &:hover {
+    background-color: var(--color-primary-hover);
+  }
+}
+
+.btn--outline {
+  background-color: transparent;
+  border-color: var(--color-border);
+  color: var(--color-text);
+
+  &:hover {
+    border-color: var(--color-text);
+  }
+}
+
+// Nút trên nền đen (section newsletter).
+.btn--inverse {
+  background-color: var(--color-white);
+  color: var(--color-black);
+
+  &:hover {
+    background-color: var(--color-surface);
+  }
+}
+
+// Control cỡ nhỏ — padding 12/16.
+.btn--sm {
+  padding: var(--btn-padding-sm);
+  font-size: var(--text-base);
+}
+
+// Chip filter / tag — nền xám, padding 10/20.
+.btn--chip {
+  padding: var(--btn-padding-chip);
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: var(--text-base);
+
+  &[aria-pressed='true'] {
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+}
+
+.btn--full {
+  width: 100%;
+}

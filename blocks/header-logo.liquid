@@ -1,0 +1,59 @@
+{% doc %}
+  Logo Header
+
+  @example
+  {% content_for 'block', type: 'header-logo', id: 'logo' %}
+{% enddoc %}
+
+<div class="header-logo" {{ block.shopify_attributes }}>
+  <a href="{{ routes.root_url }}" class="header-logo__link">
+    {% if block.settings.logo != blank %}
+      {{
+        block.settings.logo
+        | image_url: width: block.settings.logo_width
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          class: 'header-logo__image',
+          alt: block.settings.logo_text,
+      }}
+    {% else %}
+        <span class="header-logo__text">{{ block.settings.logo_text }}</span>
+    {% endif %}
+  </a>
+</div>
+
+{% schema %}
+{
+  "name": "t:blocks.header_logo.name",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:blocks.header_logo.logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "t:blocks.header_logo.logo_width",
+      "min": 80,
+      "max": 260,
+      "step": 10,
+      "unit": "px",
+      "default": 180
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "t:blocks.header_logo.logo_text",
+      "info": "t:blocks.header_logo.logo_text_info",
+      "default": "SHOP.CO"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.header_logo.name"
+    }
+  ]
+}
+{% endschema %}

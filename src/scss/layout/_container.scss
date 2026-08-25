@@ -1,0 +1,31 @@
+@use '../abstracts' as *;
+
+// Container 1240px — khớp inset 100px ở artboard 1440 của Figma.
+.container {
+  @include container;
+}
+
+.container--narrow {
+  @include container(var(--container-narrow));
+}
+
+.container--full {
+  width: 100%;
+  padding-inline: var(--spacing-gutter);
+}
+
+// Khoảng cách dọc chuẩn giữa các section.
+.section {
+  padding-block: var(--section-spacing);
+}
+
+// Dải nền hero — #F2F0F1.
+.section--hero {
+  background-color: var(--color-surface-hero);
+}
+
+// Dải nền đen — footer newsletter, banner.
+.section--inverse {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}

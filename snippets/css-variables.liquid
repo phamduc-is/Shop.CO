@@ -1,0 +1,219 @@
+{% doc %}
+  Design token của theme Shop.Co — trích từ Figma "E-commerce Website Template (Freebie)",
+  page "Pages" (file key AXFvzD9Zu9A2xkNwOItGWL), 2 breakpoint 390px / 1440px.
+
+  Heading trong Figma dùng Integral CF (font bản quyền) — theme này thay bằng
+  Archivo Black (OFL) có dáng gần nhất.
+
+  Nạp ĐẦU TIÊN trong <head>, trước critical.css. Mọi màu, font, spacing, radius
+  của theme đều tham chiếu về đây — không hardcode ở nơi khác.
+
+  @example
+    {% render 'css-variables' %}
+{% enddoc %}
+
+{% liquid
+  assign satoshi_regular = 'Satoshi-Regular.woff2' | asset_url
+  assign satoshi_medium  = 'Satoshi-Medium.woff2'  | asset_url
+  assign satoshi_bold    = 'Satoshi-Bold.woff2'    | asset_url
+  assign archivo_latin   = 'ArchivoBlack-Regular.woff2'     | asset_url
+  assign archivo_ext     = 'ArchivoBlack-Regular-ext.woff2' | asset_url
+%}
+
+<style>
+  @font-face {
+    font-family: 'Satoshi';
+    src: url('{{ satoshi_regular }}') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Satoshi';
+    src: url('{{ satoshi_medium }}') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Satoshi';
+    src: url('{{ satoshi_bold }}') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  {% # Archivo Black chỉ có 1 weight; khai 700 để map thẳng vào --font-weight-bold %}
+  @font-face {
+    font-family: 'Archivo Black';
+    src: url('{{ archivo_latin }}') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+      U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+      U+FEFF, U+FFFD;
+  }
+
+  @font-face {
+    font-family: 'Archivo Black';
+    src: url('{{ archivo_ext }}') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+      U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0,
+      U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+
+  :root {
+    /* ==========================================================
+       COLORS
+       ========================================================== */
+
+    /* Nền tảng */
+    --color-black: #000000;
+    --color-white: #ffffff;
+
+    /* Text — 3 cấp độ, lấy từ #000 với alpha khác nhau */
+    --color-text: var(--color-black);              /* 499× — text chính */
+    --color-text-muted: rgb(0 0 0 / 60%);          /* 188× — mô tả, phụ đề */
+    --color-text-subtle: rgb(0 0 0 / 40%);         /*  60× — placeholder, disabled */
+
+    /* Surface */
+    --color-background: var(--color-white);
+    --color-surface: #f0f0f0;                      /*  54× — input, filter chip, badge */
+    --color-surface-hero: #f2f0f1;                 /*   3× — dải nền hero (1440×663) */
+    --color-surface-thumb: #f0eeed;                /*  48× — nền ảnh thumbnail sản phẩm */
+
+    /* Accent */
+    --color-star: #ffc633;                         /* 253× — sao đánh giá */
+    --color-sale: #ff3333;                         /*  32× — giá giảm, badge sale */
+    --color-sale-surface: rgb(255 51 51 / 10%);    /*  24× — nền badge -30% */
+    --color-success: #01ab31;                      /*  15× — tick verified */
+
+    /* Border */
+    --color-border: rgb(0 0 0 / 10%);              /*  80× — viền mặc định */
+    --color-border-strong: rgb(0 0 0 / 20%);       /*  46× — viền nhấn */
+    --color-border-muted: #d6dce5;                 /*  45× — divider nhạt */
+
+    /* Nút — ánh xạ semantic sang màu nền tảng */
+    --color-primary: var(--color-black);
+    --color-primary-contrast: var(--color-white);
+    --color-primary-hover: rgb(0 0 0 / 80%);
+    --color-focus: var(--color-black);
+
+    /* ==========================================================
+       TYPOGRAPHY
+       Heading: Archivo Black (thay Integral CF). Body: Satoshi 400/500/700.
+       Đơn vị px — số trùng khớp trực tiếp với Figma, không phải quy đổi.
+       ========================================================== */
+
+    --font-heading: 'Archivo Black', 'Arial Black', Impact, sans-serif;
+    --font-body: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+
+    /* Line-height — Figma nhất quán: Satoshi 1.35, Archivo Black 1.2 */
+    --line-height-body: 1.35;
+    --line-height-heading: 1.2;
+    --line-height-tight: 1;
+
+    --letter-spacing-wide: 3px;                    /* heading cột footer, UPPERCASE */
+
+    /* Body scale — giống nhau ở cả 2 breakpoint, không cần override */
+    --text-xs: 10px;
+    --text-sm: 12px;
+    --text-base: 14px;                             /* 76× + 32× — cỡ dùng nhiều nhất */
+    --text-md: 16px;                               /* 63× + 24× */
+    --text-lg: 20px;                               /* giá sản phẩm */
+    --text-xl: 24px;                               /* giá lớn */
+    --text-2xl: 32px;
+    --text-3xl: 40px;                              /* số liệu thống kê */
+
+    /* Heading scale — giá trị MOBILE (artboard 390px).
+       Bản desktop override trong @media bên dưới. */
+    --text-hero: 36px;                             /* FIND CLOTHES THAT MATCHES... */
+    --text-h1: 32px;                               /* NEW ARRIVALS, top selling */
+    --text-h2: 32px;                               /* STAY UPTO DATE... */
+    --text-h3: 24px;                               /* tên sản phẩm trang detail */
+    --text-logo: 25.2px;                           /* SHOP.CO — số lẻ đúng theo Figma */
+
+    /* ==========================================================
+       SPACING — base 4px, kèm các bước lẻ Figma thực dùng
+       ========================================================== */
+    --space-2: 2px;
+    --space-4: 4px;
+    --space-6: 6px;
+    --space-8: 8px;
+    --space-10: 10px;
+    --space-12: 12px;                              /* 129× gap + 140× padding — phổ biến nhất */
+    --space-14: 14px;
+    --space-16: 16px;
+    --space-20: 20px;
+    --space-24: 24px;
+    --space-28: 28px;
+    --space-32: 32px;
+    --space-40: 40px;
+    --space-48: 48px;
+    --space-54: 54px;                              /* padding ngang CTA lớn */
+    --space-64: 64px;
+
+    /* Khoảng cách dọc giữa các section — mobile; desktop override bên dưới */
+    --section-spacing: 48px;
+
+    /* ==========================================================
+       LAYOUT
+       Figma: container 1240px, inset 100px @1440 · gutter 16px @390
+       ========================================================== */
+    --container-max: 1240px;
+    --container-narrow: 880px;
+    --spacing-gutter: var(--space-16);
+
+    /* ==========================================================
+       RADIUS
+       ========================================================== */
+    --radius-sm: 4px;
+    --radius-md: 8px;                              /*  48× */
+    --radius-lg: 20px;                             /*  71× — card */
+    --radius-pill: 62px;                           /* 105× — button, input, chip */
+    --radius-full: 999px;
+
+    /* ==========================================================
+       COMPONENT — button
+       Figma: CTA lớn padding 16/54, control chuẩn 12/16, chip 10/20
+       ========================================================== */
+    --btn-radius: var(--radius-pill);
+    --btn-font-size: var(--text-md);
+    --btn-font-weight: var(--font-weight-medium);
+    --btn-padding: var(--space-16) var(--space-54);
+    --btn-padding-sm: var(--space-12) var(--space-16);
+    --btn-padding-chip: var(--space-10) var(--space-20);
+
+    /* ==========================================================
+       MOTION
+       ========================================================== */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.2s ease;
+  }
+
+  /* ============================================================
+     DESKTOP — mốc 'lg' (990px), khớp $breakpoints trong SCSS.
+     Chỉ override những token thực sự đổi giữa 2 artboard Figma.
+     ============================================================ */
+  @media screen and (min-width: 990px) {
+    :root {
+      --text-hero: 64px;
+      --text-h1: 48px;
+      --text-h2: 40px;
+      --text-h3: 40px;
+      --text-logo: 32px;
+
+      --section-spacing: 80px;
+    }
+  }
+</style>

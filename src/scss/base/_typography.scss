@@ -1,0 +1,54 @@
+@use '../abstracts' as *;
+
+// Typography base — mọi giá trị đọc từ token ở snippets/css-variables.liquid.
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @include heading;
+}
+
+// Scale khớp Figma: hero 36→64, section 32→48, page 32→40, product 24→40.
+h1 { font-size: var(--text-hero); line-height: var(--line-height-tight); }
+h2 { font-size: var(--text-h1); }
+h3 { font-size: var(--text-h2); }
+h4 { font-size: var(--text-h3); }
+h5 { font-size: var(--text-2xl); }
+h6 { font-size: var(--text-lg); }
+
+p {
+  margin: 0;
+}
+
+small {
+  font-size: var(--text-sm);
+}
+
+strong,
+b {
+  font-weight: var(--font-weight-bold);
+}
+
+// Heading của cột footer — Satoshi Medium 14px, UPPERCASE, letter-spacing 3px.
+.heading-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+// Text phụ — mô tả sản phẩm, caption.
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-subtle {
+  color: var(--color-text-subtle);
+}
