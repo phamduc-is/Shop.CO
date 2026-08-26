@@ -1,17 +1,18 @@
-@use '../abstracts' as *;
-
-// Container 1240px — khớp inset 100px ở artboard 1440 của Figma.
+// Container fluid — content chiếm hết chiều ngang viewport, luôn cách 2 lề
+// var(--spacing-gutter): 16px mobile / 100px desktop.
+//
+// CỐ Ý không cap max-width: màn hình lớn hơn 1440 vẫn dùng hết chiều ngang,
+// chỉ giữ khoảng cách 2 lề nhất quán. Artboard Figma 1440 cho ra content
+// 1240px là HỆ QUẢ của gutter 100px, không phải giới hạn cần hardcode.
 .container {
-  @include container;
-}
-
-.container--narrow {
-  @include container(var(--container-narrow));
-}
-
-.container--full {
   width: 100%;
   padding-inline: var(--spacing-gutter);
+}
+
+// Ngoại lệ duy nhất có cap — khối văn bản dài cần giới hạn độ dài dòng để đọc được.
+.container--narrow {
+  width: min(100% - var(--spacing-gutter) * 2, var(--container-narrow));
+  margin-inline: auto;
 }
 
 // Khoảng cách dọc chuẩn giữa các section.

@@ -10,7 +10,6 @@
     {%- if page_description -%}
       <meta name="description" content="{{ page_description | escape }}">
     {%- endif -%}
-
     {% render 'css-variables' %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
@@ -21,7 +20,7 @@
   <body>
     {% sections 'header-group' %}
 
-      {{ content_for_layout }}
+    {{ content_for_layout }}
 
     {% sections 'footer-group' %}
   </body>

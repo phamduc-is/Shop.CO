@@ -1,0 +1,275 @@
+@use '../abstracts' as *;
+
+// Hero — ảnh làm background phủ kín section, hero__content nổi lên trên.
+// Vị trí content chỉnh qua 2 setting riêng: "content_position" (desktop) và
+// "content_position_mobile" (mobile), map sang justify-self/align-self trên
+// grid. Desktop bọc trong @media (min-width: 990px) để override mobile.
+
+// Inset 2 lề lấy từ class .container (padding-inline) — không set lại ở đây.
+// .hero__media dùng position:absolute + inset:0 nên phủ theo PADDING BOX,
+// tức vẫn full-bleed ra sát rìa browser dù section có padding.
+.hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 663px;
+  display: grid;
+
+  @media (max-width: 390px) {
+    height: 853px;
+  }
+}
+
+// Ảnh nền — phủ kín .hero, nằm dưới content.
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// hero-text cách đều hero__heading (phía trên) và hero-btn (phía dưới) 32px —
+// gap đều trên flex column nên không cần margin riêng từng phía.
+.hero__content {
+  position: relative;
+  z-index: 1;
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+  max-width: 596px;
+  width: 100%;
+}
+
+// 6 preset vị trí — mixin content-position dùng chung khai báo ở abstracts/_mixins.scss.
+
+// Mobile-first — áp dụng mặc định.
+.hero__content--mobile-top-left {
+  @include content-position(start, start);
+}
+
+.hero__content--mobile-top-center {
+  @include content-position(start, center);
+}
+
+.hero__content--mobile-center-left {
+  @include content-position(center, start);
+}
+
+.hero__content--mobile-center-center {
+  @include content-position(center, center);
+}
+
+.hero__content--mobile-bottom-left {
+  @include content-position(end, start);
+  padding-bottom: 10px;
+}
+
+.hero__content--mobile-bottom-center {
+  @include content-position(end, center);
+  padding-bottom: 10px;
+}
+
+.hero__content--mobile-top-center,
+.hero__content--mobile-center-center,
+.hero__content--mobile-bottom-center {
+  align-items: center;
+  text-align: center;
+}
+
+// Desktop — chỉ override khi ≥990px.
+@media screen and (min-width: 990px) {
+  .hero__content--desktop-top-left {
+    @include content-position(start, start);
+  }
+
+  .hero__content--desktop-top-center {
+    @include content-position(start, center);
+  }
+
+  .hero__content--desktop-center-left {
+    @include content-position(center, start);
+  }
+
+  .hero__content--desktop-center-center {
+    @include content-position(center, center);
+  }
+
+  .hero__content--desktop-bottom-left {
+    @include content-position(end, start);
+    padding-bottom: 10px;
+  }
+
+  .hero__content--desktop-bottom-center {
+    @include content-position(end, center);
+  }
+
+  .hero__content--desktop-top-left,
+  .hero__content--desktop-center-left,
+  .hero__content--desktop-bottom-left {
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .hero__content--desktop-top-center,
+  .hero__content--desktop-center-center,
+  .hero__content--desktop-bottom-center {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+
+// Nút riêng cho hero — hover đổi nền trắng/chữ đen theo yêu cầu design,
+// khác .btn dùng chung (hover chỉ giảm alpha nền đen).
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  width: 210px;
+  padding: var(--btn-padding);
+  border: 1px solid transparent;
+  border-radius: var(--btn-radius);
+  font-family: var(--font-body);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  line-height: var(--line-height-body);
+  text-align: center;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base);
+
+  &:hover {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border-color: var(--color-black);
+  }
+}
+
+.hero-btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+  border-color: var(--color-primary);
+}
+
+.hero-btn--secondary {
+  background-color: transparent;
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
+}
+
+// Grid chia cột — 2 cột ở mobile (358px, 3 stat khó vừa 1 hàng), 3 cột ở desktop.
+.hero__stats {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-16) 0;
+
+  @media screen and (min-width: 990px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-32);
+  }
+}
+
+.hero__stat {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+  .stat__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.hero__stat-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.hero__stat-label {
+  font-size: var(--text-base);
+}
+
+
+// Mobile hẹp — dùng chung breakpoint 375px đã set ở .hero, không thêm mốc mới.
+// Thay gap đều 32px bằng khoảng cách riêng từng cặp: h1↔desc 20, desc↔btn 24,
+// btn↔stats 20; margin-top 40px cho toàn bộ hero__content.
+@media (max-width: 390px) {
+  h1 {
+    line-height: 34px;
+  }
+
+  .hero {
+    background-color: rgba(242, 240, 241, 1);
+  }
+
+  .hero__media {
+    img {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+
+  .hero__content {
+    gap: 0;
+    margin-top: 40px;
+  }
+
+  .hero-text {
+    margin-top: 20px;
+    font-size: var(--text-base);
+  }
+
+  .hero-btn {
+    margin-top: 24px;
+    height: 52px;
+    width: 100%;
+  }
+
+  .hero__stats {
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+    grid-template-columns: repeat(2, auto);
+  }
+
+  .hero__stat {
+    border: none;
+
+    &:nth-child(even) {
+      // phần tử thứ 2, 4, 6... (chẵn)
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      justify-content: end;
+      display: flex;
+    }
+
+
+    &-value {
+      font-size: var(--text-xl);
+    }
+
+    &-label {
+      font-size: var(--text-sm);
+    }
+  }
+
+  // Stat lẻ rơi xuống hàng riêng (tổng số stat là số lẻ) → span hết hàng, canh giữa.
+  .hero__stat:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+  }
+}

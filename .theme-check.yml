@@ -3,3 +3,9 @@
 extends: :default
 
 root: .
+
+# css-variables chỉ được render từ layout/ (theme.liquid, password.liquid) —
+# OrphanedSnippet không quét layout/ nên báo false positive.
+OrphanedSnippet:
+  ignore:
+    - snippets/css-variables.liquid

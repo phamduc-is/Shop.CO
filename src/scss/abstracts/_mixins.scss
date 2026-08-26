@@ -42,3 +42,9 @@
   line-height: $line-height;
   text-transform: uppercase;
 }
+
+/// Vị trí content trong hero — trục dọc (align-self) × trục ngang (justify-self).
+@mixin content-position($align, $justify) {
+  align-self: $align;
+  justify-self: $justify;
+}

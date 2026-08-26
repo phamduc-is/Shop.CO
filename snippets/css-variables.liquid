@@ -169,6 +169,8 @@
     /* ==========================================================
        LAYOUT
        Figma: container 1240px, inset 100px @1440 · gutter 16px @390
+       --spacing-gutter là gutter MOBILE; desktop override thành 100px
+       bên dưới. .container trong critical.css đọc token này.
        ========================================================== */
     --container-max: 1240px;
     --container-narrow: 880px;
@@ -214,6 +216,9 @@
       --text-logo: 32px;
 
       --section-spacing: 80px;
+
+      {% # Inset 100px của artboard 1440 — (1440 - 1240) ÷ 2 %}
+      --spacing-gutter: 100px;
     }
   }
 </style>
