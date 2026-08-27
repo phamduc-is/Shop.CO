@@ -1,13 +1,5 @@
 @use '../abstracts' as *;
 
-// Hero — ảnh làm background phủ kín section, hero__content nổi lên trên.
-// Vị trí content chỉnh qua 2 setting riêng: "content_position" (desktop) và
-// "content_position_mobile" (mobile), map sang justify-self/align-self trên
-// grid. Desktop bọc trong @media (min-width: 990px) để override mobile.
-
-// Inset 2 lề lấy từ class .container (padding-inline) — không set lại ở đây.
-// .hero__media dùng position:absolute + inset:0 nên phủ theo PADDING BOX,
-// tức vẫn full-bleed ra sát rìa browser dù section có padding.
 .hero {
   position: relative;
   overflow: hidden;
@@ -241,13 +233,14 @@
 
   .hero__stats {
     margin-top: 20px;
-    margin-left: 40px;
-    margin-right: 40px;
-    grid-template-columns: repeat(2, auto);
+    padding: 0 40px;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
   }
 
   .hero__stat {
     border: none;
+    text-align: start;
 
     &:nth-child(even) {
       // phần tử thứ 2, 4, 6... (chẵn)
