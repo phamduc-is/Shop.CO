@@ -1,0 +1,55 @@
+@use '../abstracts' as *;
+
+// Dải sao đánh giá — 2 lớp chồng nhau, lớp vàng bị cắt theo --rating-percent.
+// Biến --rating-percent do Liquid ghi inline trên .rating__stars.
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.rating__stars {
+  position: relative;
+  display: inline-block;
+}
+
+// Không dùng gap: khoảng cách nằm trong padding của từng sao, để mỗi ô
+// chiếm đúng 1/scale_max chiều rộng — --rating-percent cắt chính xác tuyệt đối.
+.rating__layer {
+  display: flex;
+}
+
+// Lớp dưới — giữ flow, quyết định kích thước của .rating__stars.
+.rating__layer--empty {
+  color: var(--color-border-strong);
+}
+
+// Lớp trên — đè lên lớp dưới, cắt theo phần trăm.
+.rating__layer--full {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: var(--rating-percent, 0%);
+  overflow: hidden;
+  color: var(--color-star);
+}
+
+// flex-shrink: 0 là bắt buộc — thiếu thì sao bị bóp nhỏ thay vì bị cắt.
+// content-box để padding cộng thêm vào width, không ăn vào kích thước sao.
+.rating__star {
+  box-sizing: content-box;
+  flex-shrink: 0;
+  width: var(--rating-star-size);
+  height: auto;
+  padding-inline: var(--rating-star-gap);
+}
+
+.rating__value {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text);
+}
+
+.rating__scale {
+  color: var(--color-text-subtle);
+}
