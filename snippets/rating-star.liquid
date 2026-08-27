@@ -11,11 +11,16 @@
 {% enddoc %}
 
 {% liquid
-  assign scale_max = scale_max | default: 5
+  # Metafield type rating trả 3 property dạng STRING ("5.0") dù doc ghi là number.
+  # times: 1.0 gọi to_number của Liquid, ép được cả string lẫn number về số.
+  assign rating_value = rating | times: 1.0
+  assign scale = scale_max | default: 5 | times: 1.0
   assign percent = 0
-  if rating != blank and rating > 0
-    assign percent = rating | times: 100.0 | divided_by: scale_max
+  if rating_value > 0
+    assign percent = rating_value | times: 100.0 | divided_by: scale
   endif
+  # Dùng cho số vòng lặp và cho phần hiển thị "/5" — range không nhận float.
+  assign scale_display = scale | round
 %}
 {% if percent > 0 %}
   {% capture star_svg %}
@@ -23,18 +28,18 @@
     <path fill="currentColor" d="M8.79246 0L11.4117 5.63991L17.5849 6.38809L13.0304 10.6219L14.2265 16.7243L8.79246 13.701L3.35842 16.7243L4.5545 10.6219L2.86102e-06 6.38809L6.17325 5.63991L8.79246 0Z"/>
   </svg>
 {% endcapture %}
-  <div class="rating" role="img" aria-label="Rated {{ rating }} out of {{ scale_max }} stars">
+  <div class="rating" role="img" aria-label="Rated {{ rating }} out of {{ scale_display }} stars">
     {% comment %} --rating-percent: {{ percent }}% là khai báo một CSS custom property (biến CSS) ngay trên inline style, với giá trị động lấy từ Liquid {% endcomment %}
     <div class="rating__stars" style="--rating-percent: {{ percent }}%">
       {% comment %} Lớp dưới: 5 sao rỗng/xám {% endcomment %}
       <div class="rating__layer rating__layer--empty" aria-hidden="true">
-        {% for i in (1..scale_max) -%}
+        {% for i in (1..scale_display) -%}
           {{- star_svg -}}
         {%- endfor %}
       </div>
       {% comment %} Lớp trên: sao vàng, CSS cắt theo --rating-percent {% endcomment %}
       <div class="rating__layer rating__layer--full" aria-hidden="true">
-        {% for i in (1..scale_max) -%}
+        {% for i in (1..scale_display) -%}
           {{- star_svg -}}
         {%- endfor %}
       </div>
@@ -42,7 +47,7 @@
     {% if show_value %}
       <span class="rating__value">
         {{- rating -}}
-        <span class="rating__scale">/{{ scale_max }}</span></span
+        <span class="rating__scale">/{{ scale_display }}</span></span
       >
     {% endif %}
   </div>
