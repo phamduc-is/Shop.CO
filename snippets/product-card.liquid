@@ -1,0 +1,52 @@
+{% doc %}
+  Render product-card
+
+  @param {product} product - sản phẩm cần hiển thị
+{% enddoc %}
+<article class="product-card">
+  <a href="{{ product.url }}" class="product-card__link">
+    {% comment %} Ảnh sản phẩm {% endcomment %}
+
+    {% if product.featured_image %}
+      <div class="product-card__media">
+        {{
+          product.featured_image
+          | image_url: width: 600
+          | image_tag:
+            widths: '150,300,450,600',
+            sizes: '(min-width: 990px) 25vw, 50vw',
+            loading: 'lazy',
+            class: 'product-card__image'
+        }}
+      </div>
+    {% else %}
+      {{ 'product-1' | placeholder_svg_tag: 'product-card__image' }}
+    {% endif %}
+
+    {% comment %} Tên sản phẩm {% endcomment %}
+    <h3 class="product-card__title">{{ product.title }}</h3>
+
+    {% comment %} Đánh giá - Rating {% endcomment %}
+    {% assign product_rating = product.metafields.custom.ratings.value %}
+    <div class="product-card__rating">
+      {% if product_rating %}
+        {% render 'rating-star', rating: product_rating.rating, show_value: true, scale_max: product_rating.scale_max %}
+      {% endif %}
+    </div>
+
+    {% comment %} Giá — compare và badge chỉ hiện khi sản phẩm đang sale {% endcomment %}
+    <div class="product-card__price">
+      {% if product.compare_at_price > product.price %}
+        <span class="product-card__price-current">{{ product.price | money }}</span>
+        <s class="product-card__price-compare">{{ product.compare_at_price | money }}</s>
+        {% liquid
+          assign diff = product.compare_at_price | minus: product.price
+          assign price_percent = diff | times: 100.0 | divided_by: product.compare_at_price | round
+        %}
+        <span class="badge badge--sale">-{{ price_percent }}%</span>
+      {% else %}
+        <span class="product-card__price-current">{{ product.price | money }}</span>
+      {% endif %}
+    </div>
+  </a>
+</article>

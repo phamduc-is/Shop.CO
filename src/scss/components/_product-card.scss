@@ -1,0 +1,90 @@
+@use '../abstracts' as *;
+
+// Card sản phẩm — dùng ở featured-collection, related-products, collection page.
+//
+// Yêu cầu căn hàng: title / rating / price của mọi card trong cùng một hàng
+// phải thẳng nhau. Hai thứ có thể phá vỡ điều đó:
+//   1. Tên sản phẩm dài, xuống 2 dòng  → khoá về 1 dòng bằng line-clamp
+//   2. Sản phẩm không có rating        → giữ chỗ bằng min-height
+.product-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card__link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  color: inherit;
+  text-decoration: none;
+}
+
+// ── Ảnh ────────────────────────────────────────────────────────────────────
+// Nền xám + bo góc nằm ở wrapper, không ở <img>, để ảnh PNG nền trong suốt
+// vẫn có nền và ảnh không bị tràn góc bo.
+.product-card__media {
+  margin-block-end: var(--space-8);
+  overflow: hidden;
+  aspect-ratio: 1;
+  background-color: var(--color-surface-thumb);
+  border-radius: var(--radius-lg);
+}
+
+.product-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+// ── Tên ────────────────────────────────────────────────────────────────────
+// line-clamp(1): tên dài bị cắt kèm dấu ba chấm thay vì xuống dòng, giữ cho
+// rating và price của mọi card nằm cùng một cao độ.
+.product-card__title {
+  @include line-clamp(1);
+
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-body);
+  color: var(--color-text);
+}
+
+// ── Rating ─────────────────────────────────────────────────────────────────
+// min-height giữ chỗ cho sản phẩm chưa có rating, nếu không price sẽ trồi lên
+// và lệch so với các card khác cùng hàng.
+.product-card__rating {
+  display: flex;
+  align-items: center;
+  min-height: var(--rating-star-size);
+}
+
+// ── Giá ────────────────────────────────────────────────────────────────────
+.product-card__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-12);
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.product-card__price-current {
+  color: var(--color-text);
+}
+
+.product-card__price-compare {
+  color: var(--color-text-subtle);
+  text-decoration-line: line-through;
+}
+
+// ── Desktop ────────────────────────────────────────────────────────────────
+// Mốc 990px khớp $breakpoints('lg') và @media trong css-variables.liquid.
+@media screen and (min-width: 990px) {
+  .product-card__title {
+    font-size: var(--text-lg);
+  }
+
+  .product-card__price {
+    font-size: var(--text-xl);
+  }
+}
