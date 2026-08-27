@@ -187,14 +187,15 @@
 
     /* ==========================================================
        COMPONENT — button
-       Figma: CTA lớn padding 16/54, control chuẩn 12/16, chip 10/20
+       Chỉ khai báo phần mặc định; kích thước riêng của từng nút do section
+       tự override. Số đo lấy từ Figma artboard 1440, nút Shop Now #22:333
+       (210×52, padding 16/54).
        ========================================================== */
     --btn-radius: var(--radius-pill);
     --btn-font-size: var(--text-md);
     --btn-font-weight: var(--font-weight-medium);
     --btn-padding: var(--space-16) var(--space-54);
-    --btn-padding-sm: var(--space-12) var(--space-16);
-    --btn-padding-chip: var(--space-10) var(--space-20);
+    --btn-width: 210px;
 
     /* ==========================================================
        COMPONENT — rating

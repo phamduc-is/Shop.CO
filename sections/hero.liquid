@@ -30,7 +30,7 @@
           {% if block.settings.label != blank %}
             <a
               href="{{ block.settings.url | default: '#' }}"
-              class="hero-btn hero-btn--{{ block.settings.style | default: 'primary' }}"
+              class="btn hero-btn hero-btn--{{ block.settings.style | default: 'primary' }}"
               {% if block.settings.color != blank %}
                 style="color: {{ block.settings.color }};"
               {% endif %}
@@ -68,7 +68,6 @@
 {
   "name": "Hero",
   "tag": "section",
-  "class": "hero",
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading" },
     { "type": "image_picker", "id": "image", "label": "Image" },

@@ -117,27 +117,12 @@
 }
 
 
-// Nút riêng cho hero — hover đổi nền trắng/chữ đen theo yêu cầu design,
-// khác .btn dùng chung (hover chỉ giảm alpha nền đen).
+// Nút hero — dùng kèm .btn trong markup: `class="btn hero-btn hero-btn--primary"`.
+// Khung (bề rộng 210px, padding, radius, font, transition) đã nằm ở .btn trong
+// components/_button.scss. Ở đây chỉ còn hover: nền trắng / chữ đen / viền đen.
+// Thứ tự @use trong theme.scss là components → sections, nên .hero-btn thắng .btn
+// ở cùng specificity mà không cần tăng độ ưu tiên.
 .hero-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 100%;
-  width: 210px;
-  padding: var(--btn-padding);
-  border: 1px solid transparent;
-  border-radius: var(--btn-radius);
-  font-family: var(--font-body);
-  font-size: var(--btn-font-size);
-  font-weight: var(--btn-font-weight);
-  line-height: var(--line-height-body);
-  text-align: center;
-  transition:
-    background-color var(--transition-base),
-    color var(--transition-base),
-    border-color var(--transition-base);
-
   &:hover {
     background-color: var(--color-white);
     color: var(--color-black);
@@ -145,12 +130,16 @@
   }
 }
 
+// Giữ riêng thay vì dùng .btn--primary: hero có thêm border-color để viền không
+// biến mất khi hover đổi nền, và hover của .btn--primary sẽ chọi với hover ở trên.
 .hero-btn--primary {
   background-color: var(--color-primary);
   color: var(--color-primary-contrast);
   border-color: var(--color-primary);
 }
 
+// Tương đương .btn--outline nhưng viền dùng --color-border-strong (đậm hơn) cho
+// tương phản trên ảnh nền hero.
 .hero-btn--secondary {
   background-color: transparent;
   color: var(--color-text);
