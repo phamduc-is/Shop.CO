@@ -1,0 +1,37 @@
+@use '../abstracts' as *;
+
+// Dải sản phẩm nổi bật — NEW ARRIVALS / TOP SELLING trên trang chủ.
+// Số đo từ Figma Homepage #20:2 (artboard 1440):
+//   heading "NEW ARRIVALS" #22:377   y 991,  cao 58
+//   hàng card đầu tiên     #22:412   y 1104            → cách heading 55px
+//   card                             295 rộng, cách nhau 20px (x: 100/415/730/1045)
+//   nút "View All"         #22:493   y 1548            → cách đáy card 36px
+.featured-collection__heading {
+  @include heading(var(--text-h1));
+
+  margin-block-end: var(--space-54);
+  text-align: center;
+}
+
+// 4 cột ở desktop khớp Figma. Mobile (artboard 390) không đủ chỗ cho 4 card
+// nên chia 2 cột — product-card đã tự co theo 1fr.
+.featured-collection__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-16);
+  list-style: none;
+}
+
+.featured-collection__footer {
+  display: flex;
+  justify-content: center;
+  margin-block-start: var(--space-32);
+}
+
+// Mốc 990px khớp $breakpoints('lg') và @media trong css-variables.liquid.
+@media screen and (min-width: 990px) {
+  .featured-collection__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-20);
+  }
+}

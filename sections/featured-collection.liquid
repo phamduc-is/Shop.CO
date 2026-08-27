@@ -1,0 +1,91 @@
+{% liquid
+  # Setting type collection trả về collection object sẵn, không cần tra collections[handle]
+  assign collection = section.settings.collection
+  assign products_limit = section.settings.product_to_show
+  assign button_url = section.settings.button_url | default: collection.url
+%}
+
+<div class="container">
+  <h2 class="featured-collection__heading">{{ section.settings.collection_title }}</h2>
+
+  <ul class="featured-collection__grid" role="list">
+    {% if collection.products.size > 0 %}
+      {% for product in collection.products limit: products_limit %}
+        <li class="featured-collection__item">
+          {% render 'product-card', product: product %}
+        </li>
+      {% endfor %}
+    {% else %}
+      {% comment %}
+        Chưa chọn collection — dựng khung rỗng để merchant thấy bố cục ngay trong
+        theme editor. product-card nhận product nil sẽ rơi về placeholder_svg_tag.
+      {% endcomment %}
+      {% for i in (1..products_limit) %}
+        <li class="featured-collection__item">
+          {% render 'product-card', product: null %}
+        </li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+
+  {% comment %} Điều kiện bọc cả div để footer rỗng không ăn margin {% endcomment %}
+  {% if section.settings.button_label != blank and button_url != blank %}
+    <div class="featured-collection__footer">
+      <a href="{{ button_url }}" class="btn btn--primary">
+        {{ section.settings.button_label }}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "tag": "section",
+  "class": "section featured-collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "collection_title",
+      "label": "Heading",
+      "default": "New Arrivals"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_to_show",
+      "label": "Products to show",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link",
+      "info": "Bỏ trống sẽ tự trỏ về collection đã chọn."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection",
+      "settings": {
+        "collection_title": "New Arrivals",
+        "product_to_show": 4,
+        "button_label": "View All"
+      }
+    }
+  ]
+}
+{% endschema %}

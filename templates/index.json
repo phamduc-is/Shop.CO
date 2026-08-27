@@ -40,7 +40,23 @@
         "stat_products",
         "stat_customers"
       ]
+    },
+    "new_arrivals": {
+      "type": "featured-collection",
+      "settings": {
+        "collection_title": "New Arrivals",
+        "product_to_show": 4,
+        "button_label": "View All"
+      }
+    },
+    "top_selling": {
+      "type": "featured-collection",
+      "settings": {
+        "collection_title": "Top Selling",
+        "product_to_show": 4,
+        "button_label": "View All"
+      }
     }
   },
-  "order": ["hero"]
+  "order": ["hero", "new_arrivals", "top_selling"]
 }
