@@ -17,9 +17,16 @@
 // nên chia 2 cột — product-card đã tự co theo 1fr.
 .featured-collection__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-auto-flow: column;
   gap: var(--space-16);
   list-style: none;
+  // horizontal scroller
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; // ẩn thanh cuộn
+}
+.featured-collection__item{
+  width: 198px;
 }
 
 .featured-collection__footer {
@@ -33,5 +40,8 @@
   .featured-collection__grid {
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-20);
+  }
+  .featured-collection__item{
+    width: 100%;
   }
 }
