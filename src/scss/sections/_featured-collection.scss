@@ -25,8 +25,11 @@
   scroll-snap-type: x mandatory;
   scrollbar-width: none; // ẩn thanh cuộn
 }
-.featured-collection__item{
-  width: 198px;
+.featured-collection__item {
+  width: var(--fc-item-width);
+  // scroll-snap-type ở container chỉ có tác dụng khi item khai align — thiếu dòng
+  // này thì snap không xảy ra và nút prev/next dừng lệch giữa 2 card.
+  scroll-snap-align: start;
 }
 
 .featured-collection__footer {
@@ -35,13 +38,88 @@
   margin-block-start: var(--space-32);
 }
 
+// ── Nút điều hướng scroller (mobile) ───────────────────────────────────────
+// Nút nằm NGOÀI <ul> (scroll container) và định vị absolute so với wrapper này,
+// nếu không chúng sẽ trôi theo nội dung khi swipe.
+.featured-collection__scroller {
+  // Khai ở wrapper vì --fc-item-width được dùng ở CẢ item (con của <ul>) lẫn nút
+  // điều hướng (sibling của <ul>) — đặt trên grid thì nút không thừa hưởng được.
+  --fc-item-width: 198px;
+  --fc-nav-size: 36px;
+  --fc-nav-icon-size: 16px;
+
+  position: relative;
+}
+
+.featured-collection__nav {
+  // Căn giữa theo ẢNH thumbnail thay vì theo chiều cao card: product-card__media
+  // có aspect-ratio 1 nên tâm ảnh luôn = 1/2 bề rộng card, không phụ thuộc việc
+  // tên sản phẩm hay rating có làm card cao lên.
+  position: absolute;
+  inset-block-start: calc(var(--fc-item-width) / 2);
+  translate: 0 -50%;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--fc-nav-size);
+  block-size: var(--fc-nav-size);
+  padding: 0;
+
+  appearance: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  // Nền mờ để không che hẳn ảnh sản phẩm phía dưới.
+  background-color: rgb(255 255 255 / 85%);
+  color: var(--color-black);
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
+
+  &:hover {
+    background-color: var(--color-white);
+  }
+
+  // inline_asset_content nhả nguyên xi thẻ svg, không chèn được attribute
+  // → cỡ, màu (fill="currentColor") và hướng đều điều khiển từ đây.
+  svg {
+    inline-size: var(--fc-nav-icon-size);
+    block-size: var(--fc-nav-icon-size);
+  }
+}
+
+// chevron-down.svg hướng XUỐNG, xoay ra 2 hướng ngang.
+.featured-collection__nav--prev {
+  inset-inline-start: 0;
+
+  svg {
+    rotate: 90deg;
+  }
+}
+
+.featured-collection__nav--next {
+  inset-inline-end: 0;
+
+  svg {
+    rotate: -90deg;
+  }
+}
+
 // Mốc 990px khớp $breakpoints('lg') và @media trong css-variables.liquid.
 @media screen and (min-width: 990px) {
   .featured-collection__grid {
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-20);
   }
-  .featured-collection__item{
+  .featured-collection__item {
     width: 100%;
+  }
+
+  // Desktop đủ chỗ cho 4 card, không còn overflow nên nút vô nghĩa.
+  .featured-collection__nav {
+    display: none;
   }
 }

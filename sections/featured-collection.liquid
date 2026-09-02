@@ -8,27 +8,39 @@
 <div class="container">
   <h2 class="featured-collection__heading">{{ section.settings.collection_title }}</h2>
 
-  <ul class="featured-collection__grid" role="list">
-    {% if collection.products.size > 0 %}
-      {% for product in collection.products limit: products_limit %}
-        <li class="featured-collection__item">
-          {% render 'product-card', product: product %}
-        </li>
-      {% endfor %}
-    {% else %}
-      {% comment %}
-        Chưa chọn collection — dựng khung rỗng để merchant thấy bố cục ngay trong
-        theme editor. product-card nhận product nil sẽ rơi về placeholder_svg_tag.
-      {% endcomment %}
-      {% for i in (1..products_limit) %}
-        <li class="featured-collection__item">
-          {% render 'product-card', product: null %}
-        </li>
-      {% endfor %}
-    {% endif %}
-  </ul>
-
-  {% comment %} Điều kiện bọc cả div để footer rỗng không ăn margin {% endcomment %}
+  <div class="featured-collection__scroller">
+    <ul class="featured-collection__grid" role="list">
+      {% if collection.products.size > 0 %}
+        {% for product in collection.products limit: products_limit %}
+          <li class="featured-collection__item">
+            {% render 'product-card', product: product %}
+          </li>
+        {% endfor %}
+      {% else %}
+        {% for i in (1..products_limit) %}
+          <li class="featured-collection__item">
+            {% render 'product-card', product: null %}
+          </li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+    <button
+      type="button"
+      class="featured-collection__nav featured-collection__nav--prev"
+      data-dir="prev"
+      aria-label="{{ 'general.accessibility.previous' | t }}"
+    >
+      {{ 'chevron-down.svg' | inline_asset_content }}
+    </button>
+    <button
+      type="button"
+      class="featured-collection__nav featured-collection__nav--next"
+      data-dir="next"
+      aria-label="{{ 'general.accessibility.next' | t }}"
+    >
+      {{ 'chevron-down.svg' | inline_asset_content }}
+    </button>
+  </div>
   {% if section.settings.button_label != blank and button_url != blank %}
     <div class="featured-collection__footer">
       <a href="{{ button_url }}" class="btn btn--primary">
@@ -37,6 +49,22 @@
     </div>
   {% endif %}
 </div>
+
+{% javascript %}
+  document.addEventListener('click', (event) => {
+    const button = event.target.closest('.featured-collection__nav');
+    if (!button) return;
+
+    const list = button.closest('.featured-collection__scroller').querySelector('.featured-collection__grid');
+    const item = list.firstElementChild;
+    if (!item) return;
+
+    const gap = parseFloat(getComputedStyle(list).columnGap) || 0;
+    const step = item.getBoundingClientRect().width + gap;
+
+    list.scrollBy({ left: button.dataset.dir === 'prev' ? -step : step, behavior: 'smooth' });
+  });
+{% endjavascript %}
 
 {% schema %}
 {

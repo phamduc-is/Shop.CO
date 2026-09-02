@@ -1,7 +1,9 @@
 {
   "general": {
     "accessibility": {
-      "close": "Close"
+      "close": "Close",
+      "previous": "Previous",
+      "next": "Next"
     }
   }
 }
