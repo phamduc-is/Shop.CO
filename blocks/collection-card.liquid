@@ -1,0 +1,43 @@
+{% liquid
+  assign collection = block.settings.collection
+  assign image = block.settings.image | default: collection.featured_image
+  assign title = block.settings.title | default: collection.title
+%}
+<li class="collection-card" {{ block.shopify_attributes }}>
+  <a href="{{ collection.url | default: '#' }}" class="collection-card__link">
+    {% if image %}
+      {{ image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'collection-card__image', alt: title }}
+    {% else %}
+      {{ 'collection-1' | placeholder_svg_tag: 'collection-card__image' }}
+    {% endif %}
+
+    <span class="collection-card__title">{{ title }}</span>
+  </a>
+</li>
+
+{% schema %}
+{
+  "name": "Collection Card",
+  "tag": null,
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Collection Title",
+      "info": "Bỏ trống sẽ lấy tên collection."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Collection Image",
+      "info": "Bỏ trống sẽ lấy ảnh đại diện của collection."
+    }
+  ],
+  "presets": [{ "name": "Collection Card" }]
+}
+{% endschema %}

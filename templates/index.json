@@ -22,15 +22,24 @@
         },
         "stat_brands": {
           "type": "stat",
-          "settings": { "value": "200+", "label": "International Brands" }
+          "settings": {
+            "value": "200+",
+            "label": "International Brands"
+          }
         },
         "stat_products": {
           "type": "stat",
-          "settings": { "value": "2,000+", "label": "High-Quality Products" }
+          "settings": {
+            "value": "2,000+",
+            "label": "High-Quality Products"
+          }
         },
         "stat_customers": {
           "type": "stat",
-          "settings": { "value": "30,000+", "label": "Happy Customers" }
+          "settings": {
+            "value": "30,000+",
+            "label": "Happy Customers"
+          }
         }
       },
       "block_order": [
@@ -56,7 +65,47 @@
         "product_to_show": 4,
         "button_label": "View All"
       }
+    },
+    "collection_list": {
+      "type": "collection-list",
+      "blocks": {
+        "casual": {
+          "type": "collection-card",
+          "settings": {
+            "title": "Casual"
+          }
+        },
+        "formal": {
+          "type": "collection-card",
+          "settings": {
+            "title": "Formal"
+          }
+        },
+        "party": {
+          "type": "collection-card",
+          "settings": {
+            "title": "Party"
+          }
+        },
+        "gym": {
+          "type": "collection-card",
+          "settings": {
+            "title": "Gym"
+          } 
+        }
+      },
+      "block_order": [
+        "casual",
+        "formal",
+        "party",
+        "gym"
+      ]
     }
   },
-  "order": ["hero", "new_arrivals", "top_selling"]
+  "order": [
+    "hero",
+    "new_arrivals",
+    "top_selling",
+    "collection_list"
+  ]
 }

@@ -1,0 +1,55 @@
+<div class="collection-list">
+  <h2 class="collection-list__heading">{{ section.settings.heading }}</h2>
+
+  <ul class="collection-list__grid collection-list__grid--{{ section.settings.layout }}" role="list">
+    {% content_for 'blocks' %}
+  </ul>
+</div>
+{% schema %}
+{
+  "name": "Collection List",
+  "tag": "section",
+  "class": "container",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "BROWSE BY DRESS STYLE"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "equal", "label": "Equal — 2 per row, same size" },
+        { "value": "contrast", "label": "Contrast — narrow / wide alternating" }
+      ],
+      "default": "contrast"
+    }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    { "type": "collection-card" }
+  ],
+  "presets": [
+    {
+      "name": "Collection List",
+      "blocks": [
+        {
+          "type": "collection-card"
+        },
+        {
+          "type": "collection-card"
+        },
+        {
+          "type": "collection-card"
+        },
+        {
+          "type": "collection-card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
