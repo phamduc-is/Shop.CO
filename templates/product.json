@@ -1,0 +1,60 @@
+{
+  "sections": {
+    "pd_local": {
+      "type": "pd-local",
+      "settings": {
+        "heading": "Local block sandbox"
+      },
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "title": "Local A",
+            "text": "Markup nằm trong section, loop bằng for."
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "title": "Local B",
+            "text": "Schema khai inline, không dùng lại được."
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2"
+      ]
+    },
+    "pd_theme": {
+      "type": "pd-theme",
+      "settings": {
+        "heading": "Theme block sandbox"
+      },
+      "blocks": {
+        "card_1": {
+          "type": "pd-card",
+          "settings": {
+            "title": "Theme A",
+            "text": "Markup ở blocks/pd-card.liquid, dùng lại được."
+          }
+        },
+        "card_2": {
+          "type": "pd-card",
+          "settings": {
+            "title": "Theme B",
+            "text": "Render qua content_for 'blocks'."
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2"
+      ]
+    }
+  },
+  "order": [
+    "pd_local",
+    "pd_theme"
+  ]
+}

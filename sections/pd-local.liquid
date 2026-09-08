@@ -1,0 +1,74 @@
+{% # Sandbox section dùng LOCAL BLOCK — markup của block viết thẳng trong file này %}
+
+{{ 'pd-sandbox.css' | asset_url | stylesheet_tag }}
+
+<section class="pd-sandbox pd-sandbox--local container">
+  <header class="pd-sandbox__head">
+    <span class="pd-badge pd-badge--local">LOCAL BLOCK</span>
+    <h2 class="pd-sandbox__title">{{ section.settings.heading }}</h2>
+    <p class="pd-sandbox__meta">
+      section: <code>pd-local</code> ·
+      render: <code>{% raw %}{% for block in section.blocks %}{% endraw %}</code> ·
+      product: <strong>{{ product.title | default: 'no product in context' }}</strong>
+    </p>
+  </header>
+
+  <ul class="pd-grid" role="list">
+    {% for block in section.blocks %}
+      <li class="pd-card pd-card--local" {{ block.shopify_attributes }}>
+        <div class="pd-card__media">
+          {% if block.settings.image != blank %}
+            {{
+              block.settings.image
+              | image_url: width: 600
+              | image_tag: loading: 'lazy', class: 'pd-card__image', alt: block.settings.title
+            }}
+          {% else %}
+            {{ 'product-apparel-1' | placeholder_svg_tag: 'pd-card__image' }}
+          {% endif %}
+        </div>
+        <div class="pd-card__body">
+          <span class="pd-card__tag">local · {{ forloop.index }}/{{ forloop.length }}</span>
+          <h3 class="pd-card__title">{{ block.settings.title }}</h3>
+          <p class="pd-card__text">{{ block.settings.text }}</p>
+        </div>
+      </li>
+    {% else %}
+      <li class="pd-card pd-card--empty">Chưa có block nào — thêm ở Customize.</li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% schema %}
+{
+  "name": "PD local block",
+  "tag": "section",
+  "class": "section-pd-local",
+  "limit": 1,
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Local block sandbox" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Local card" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Markup nằm trong section." },
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Bỏ trống sẽ dùng placeholder." }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "PD local block",
+      "blocks": [
+        { "type": "card", "settings": { "title": "Local A" } },
+        { "type": "card", "settings": { "title": "Local B" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

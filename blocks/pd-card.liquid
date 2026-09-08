@@ -1,0 +1,43 @@
+{% doc %}
+  Theme block card — ảnh + title + text. Dùng trong section pd-theme để so sánh
+  trực quan với local block của pd-local.
+
+  Style nằm ở assets/pd-sandbox.css (class .pd-card*), chia sẻ với section pd-local.
+
+  @example
+  {% content_for 'block', type: 'pd-card', id: 'card-a' %}
+{% enddoc %}
+
+{% liquid
+  assign title = block.settings.title | default: 'Theme card'
+  assign image = block.settings.image
+%}
+
+<li class="pd-card pd-card--theme" {{ block.shopify_attributes }}>
+  <div class="pd-card__media">
+    {% if image != blank %}
+      {{ image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'pd-card__image', alt: title }}
+    {% else %}
+      {{ 'product-apparel-2' | placeholder_svg_tag: 'pd-card__image' }}
+    {% endif %}
+  </div>
+
+  <div class="pd-card__body">
+    <span class="pd-card__tag">theme · blocks/pd-card.liquid</span>
+    <h3 class="pd-card__title">{{ title }}</h3>
+    <p class="pd-card__text">{{ block.settings.text }}</p>
+  </div>
+</li>
+
+{% schema %}
+{
+  "name": "PD Card",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Theme card" },
+    { "type": "text", "id": "text", "label": "Text", "default": "Markup ở blocks/pd-card.liquid." },
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Bỏ trống sẽ dùng placeholder." }
+  ],
+  "presets": [{ "name": "PD Card" }]
+}
+{% endschema %}
