@@ -35,9 +35,30 @@
         "card_1": {
           "type": "pd-card",
           "settings": {
-            "title": "Theme A",
-            "text": "Markup ở blocks/pd-card.liquid, dùng lại được."
-          }
+            "title": "Theme A (parent)",
+            "text": "Card này chứa 2 card con.",
+            "hide_media": true
+          },
+          "blocks": {
+            "child_1": {
+              "type": "pd-card",
+              "settings": {
+                "title": "Child A1",
+                "text": "Nested depth 2."
+              }
+            },
+            "child_2": {
+              "type": "pd-card",
+              "settings": {
+                "title": "Child A2",
+                "text": "Nested depth 2."
+              }
+            }
+          },
+          "block_order": [
+            "child_1",
+            "child_2"
+          ]
         },
         "card_2": {
           "type": "pd-card",

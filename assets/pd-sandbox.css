@@ -111,3 +111,26 @@
   color: var(--color-text-muted);
   margin: 0;
 }
+
+/* Nesting — card con của một PD Card (theme block lồng theme block) */
+.pd-card__children {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-8);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pd-card__children:empty {
+  display: none;
+}
+
+.pd-card__children .pd-card {
+  background: var(--color-white);
+  border: 1px dashed var(--color-success);
+}
+
+.pd-card__children .pd-card__tag::before {
+  content: '↳ ';
+}
