@@ -7,9 +7,8 @@
     <span class="pd-badge pd-badge--theme">THEME BLOCK</span>
     <h2 class="pd-sandbox__title">{{ section.settings.heading }}</h2>
     <p class="pd-sandbox__meta">
-      section: <code>pd-theme</code> ·
-      render: <code>{% raw %}{% content_for 'blocks' %}{% endraw %}</code> ·
-      product: <strong>{{ product.title | default: 'no product in context' }}</strong>
+      section: <code>pd-theme</code> · render: <code>{% raw %}{% content_for 'blocks' %}{% endraw %}</code> · product:
+      <strong>{{ product.title | default: 'no product in context' }}</strong>
     </p>
   </header>
 
@@ -28,17 +27,15 @@
     { "type": "header", "content": "Content" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Theme block sandbox" }
   ],
-  "blocks": [
-    { "type": "@theme" },
-    { "type": "@app" }
-  ],
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
   "max_blocks": 8,
   "presets": [
     {
       "name": "PD theme block 2",
       "blocks": [
-        { "type": "pd-card", "settings": { "title": "Theme A" } },
-        { "type": "pd-card", "settings": { "title": "Theme B" } }
+        { "type": "pd-card", "settings": {} },
+        { "type": "pd-card", "settings": { "title": "Theme B" } },
+        { "type": "pd-card", "settings": { "title": "ThemeCCCCsCC"} }
       ]
     }
   ]

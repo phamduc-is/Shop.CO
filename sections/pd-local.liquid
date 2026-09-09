@@ -62,7 +62,7 @@
 
 {% schema %}
 {
-  "name": "PD local block df",
+  "name": "PD local",
   "tag": "section",
   "class": "section-pd-local",
   "limit": 2,
@@ -96,9 +96,10 @@
     }
   ],
   "max_blocks": 5,
+  "enabled_on": {"templates": ["product"]},
   "presets": [
     {
-      "name": "PD local block",
+      "name": "PD local",
       "category": "Banners",
       "blocks": [
         { "type": "card", "settings": { "title": "Local A" } },
@@ -107,7 +108,7 @@
       ]
     },
     {
-      "name": "PD local block 2",
+      "name": "PD local 2",
       "blocks": [
         { "type": "card", "settings": { "title": "Local A" } },
         { "type": "text", "settings": { "title": "Text 1" } }
