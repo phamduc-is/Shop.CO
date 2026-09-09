@@ -1,3 +1,5 @@
+{% # Blocks của section này là THEME BLOCK: markup nằm ở blocks/hero-*.liquid %}
+
 <section class="hero container">
   <div class="hero__media">
     <picture>
@@ -16,51 +18,7 @@
 
   <div class="hero__content hero__content--desktop-{{ section.settings.content_position }} hero__content--mobile-{{ section.settings.content_position_mobile }}">
     <h1 class="hero__heading">{{ section.settings.heading }}</h1>
-    {% for block in section.blocks %}
-      {% case block.type %}
-        {% when 'text' %}
-          <div
-            class="hero-text text-muted"
-            style="{% if block.settings.color != blank %} color: {{ block.settings.color }};{% endif %}"
-            {{ block.shopify_attributes }}
-          >
-            {{ block.settings.text }}
-          </div>
-        {% when 'button' %}
-          {% if block.settings.label != blank %}
-            <a
-              href="{{ block.settings.url | default: '#' }}"
-              class="btn hero-btn hero-btn--{{ block.settings.style | default: 'primary' }}"
-              {% if block.settings.color != blank %}
-                style="color: {{ block.settings.color }};"
-              {% endif %}
-              {{ block.shopify_attributes }}
-            >
-              {{ block.settings.label }}
-            </a>
-          {% endif %}
-      {% endcase %}
-    {% endfor %}
-
-    {% comment %} stat gom riêng ra ngoài {% endcomment %}
-    <div class="hero__stats">
-      {% for block in section.blocks %}
-        {% if block.type == 'stat' %}
-          <div
-            class="hero__stat"
-            {% if block.settings.color != blank %}
-              style="color: {{ block.settings.color }};"
-            {% endif %}
-            {{ block.shopify_attributes }}
-          >
-            <div class="stat__content">
-              <span class="hero__stat-value">{{ block.settings.value }}</span>
-              <span class="hero__stat-label text-muted">{{ block.settings.label }}</span>
-            </div>
-          </div>
-        {% endif %}
-      {% endfor %}
-    </div>
+    {% content_for 'blocks' %}
   </div>
 </section>
 
@@ -102,53 +60,25 @@
     }
   ],
   "blocks": [
-    {
-      "type": "text",
-      "name": "Description",
-      "limit": 1,
-      "settings": [
-        { "type": "richtext", "id": "text", "label": "Text" },
-        { "type": "color", "id": "color", "label": "Text color" }
-      ]
-    },
-    {
-      "type": "button",
-      "name": "Button",
-      "settings": [
-        { "type": "text", "id": "label", "label": "Label", "default": "Shop Now" },
-        { "type": "url", "id": "url", "label": "Link" },
-        {
-          "type": "select",
-          "id": "style",
-          "label": "Style",
-          "options": [
-            { "value": "primary", "label": "Primary" },
-            { "value": "secondary", "label": "Secondary" }
-          ],
-          "default": "primary"
-        },
-        { "type": "color", "id": "color", "label": "Text color" }
-      ]
-    },
-    {
-      "type": "stat",
-      "name": "Stat",
-      "settings": [
-        { "type": "text", "id": "value", "label": "Value", "default": "200+" },
-        { "type": "text", "id": "label", "label": "Label", "default": "International Brands" },
-        { "type": "color", "id": "color", "label": "Value color" }
-      ]
-    }
+    { "type": "hero-text" },
+    { "type": "hero-button" },
+    { "type": "hero-stats" }
   ],
+  
   "presets": [
     {
-      "name": "Hero",
+      "name": "Hero 2",
       "blocks": [
-        { "type": "text" },
-        { "type": "button" },
-        { "type": "stat", "settings": { "value": "200+", "label": "International Brands" } },
-        { "type": "stat", "settings": { "value": "2,000+", "label": "High-Quality Products" } },
-        { "type": "stat", "settings": { "value": "30,000+", "label": "Happy Customers" } }
+        { "type": "hero-text" },
+        { "type": "hero-button" },
+        {
+          "type": "hero-stats",
+          "blocks": [
+            { "type": "hero-stat", "settings": { "value": "200+", "label": "International Brands" } },
+            { "type": "hero-stat", "settings": { "value": "2,000+", "label": "High-Quality Products" } },
+            { "type": "hero-stat", "settings": { "value": "30,000+", "label": "Happy Customers" } }
+          ]
+        }
       ]
     }
   ]

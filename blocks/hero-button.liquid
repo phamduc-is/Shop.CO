@@ -1,0 +1,43 @@
+{% doc %}
+  Hero CTA button — theme block, tách ra từ local block "button" của section hero.
+  Style dùng class `.hero-btn` / `.hero-btn--{style}` trong assets/theme.css.
+
+  @example
+  {% content_for 'block', type: 'hero-button', id: 'hero-cta' %}
+{% enddoc %}
+
+{% if block.settings.label != blank %}
+  <a
+    href="{{ block.settings.url | default: '#' }}"
+    class="btn hero-btn hero-btn--{{ block.settings.style | default: 'primary' }}"
+    {% if block.settings.color != blank %}
+      style="color: {{ block.settings.color }};"
+    {% endif %}
+    {{ block.shopify_attributes }}
+  >
+    {{ block.settings.label }}
+  </a>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Button",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "Shop Now" },
+    { "type": "url", "id": "url", "label": "Link" },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        { "value": "primary", "label": "Primary" },
+        { "value": "secondary", "label": "Secondary" }
+      ],
+      "default": "primary"
+    },
+    { "type": "color", "id": "color", "label": "Text color" }
+  ],
+  "presets": [{ "name": "Button", "category": "Hero" }]
+}
+{% endschema %}

@@ -8,46 +8,55 @@
       },
       "blocks": {
         "description": {
-          "type": "text",
+          "type": "hero-text",
           "settings": {
             "text": "<p>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>"
           }
         },
         "cta": {
-          "type": "button",
+          "type": "hero-button",
           "settings": {
             "label": "Shop Now",
             "style": "primary"
           }
         },
-        "stat_brands": {
-          "type": "stat",
-          "settings": {
-            "value": "200+",
-            "label": "International Brands"
-          }
-        },
-        "stat_products": {
-          "type": "stat",
-          "settings": {
-            "value": "2,000+",
-            "label": "High-Quality Products"
-          }
-        },
-        "stat_customers": {
-          "type": "stat",
-          "settings": {
-            "value": "30,000+",
-            "label": "Happy Customers"
-          }
+        "stats": {
+          "type": "hero-stats",
+          "settings": {},
+          "blocks": {
+            "stat_brands": {
+              "type": "hero-stat",
+              "settings": {
+                "value": "200+",
+                "label": "International Brands"
+              }
+            },
+            "stat_products": {
+              "type": "hero-stat",
+              "settings": {
+                "value": "2,000+",
+                "label": "High-Quality Products"
+              }
+            },
+            "stat_customers": {
+              "type": "hero-stat",
+              "settings": {
+                "value": "30,000+",
+                "label": "Happy Customers"
+              }
+            }
+          },
+          "block_order": [
+            "stat_brands",
+            "stat_products",
+            "stat_customers"
+          ]
         }
       },
       "block_order": [
         "description",
         "cta",
-        "stat_brands",
-        "stat_products",
-        "stat_customers"
+        "stats"
       ]
     },
     "new_arrivals": {
@@ -91,7 +100,7 @@
           "type": "collection-card",
           "settings": {
             "title": "Gym"
-          } 
+          }
         }
       },
       "block_order": [

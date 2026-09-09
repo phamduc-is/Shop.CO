@@ -1,0 +1,29 @@
+{% doc %}
+  Hero description — theme block, tách ra từ local block "text" của section hero.
+  Style dùng class `.hero-text` trong assets/theme.css.
+
+  @example
+  {% content_for 'block', type: 'hero-text', id: 'hero-text' %}
+{% enddoc %}
+
+<div
+  class="hero-text text-muted"
+  {% if block.settings.color != blank %}
+    style="color: {{ block.settings.color }};"
+  {% endif %}
+  {{ block.shopify_attributes }}
+>
+  {{ block.settings.text }}
+</div>
+
+{% schema %}
+{
+  "name": "Description",
+  "tag": null,
+  "settings": [
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>text</p>" },
+    { "type": "color", "id": "color", "label": "Text color" }
+  ],
+  "presets": [{ "name": "Description", "category": "Hero" }]
+}
+{% endschema %}

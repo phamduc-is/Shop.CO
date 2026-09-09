@@ -1,0 +1,34 @@
+{% doc %}
+  Hero stats — block nhóm, giữ lại wrapper `.hero__stats` (CSS grid) mà bản local
+  block dựng bằng cách lọc `section.blocks | where: 'type', 'stat'`.
+  Theme block render theo đúng thứ tự merchant sắp, không lọc được theo type,
+  nên các `hero-stat` phải nằm trong block nhóm này để giữ layout grid.
+
+  @example
+  {% content_for 'block', type: 'hero-stats', id: 'hero-stats' %}
+{% enddoc %}
+
+<div class="hero__stats" {{ block.shopify_attributes }}>
+  {% # hero-stat là con trực tiếp -> CSS :nth-child / :last-child vẫn đúng %}
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Stats",
+  "tag": null,
+  "settings": [],
+  "blocks": [{ "type": "hero-stat" }],
+  "presets": [
+    {
+      "name": "Stats",
+      "category": "Hero",
+      "blocks": [
+        { "type": "hero-stat", "settings": { "value": "200+", "label": "International Brands" } },
+        { "type": "hero-stat", "settings": { "value": "2,000+", "label": "High-Quality Products" } },
+        { "type": "hero-stat", "settings": { "value": "30,000+", "label": "Happy Customers" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

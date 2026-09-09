@@ -1,0 +1,33 @@
+{% doc %}
+  Một ô số liệu trong hero. Chỉ dùng bên trong block `hero-stats`
+  (section hero không khai type này ở cấp gốc).
+
+  @example
+  {% content_for 'block', type: 'hero-stat', id: 'stat-brands' %}
+{% enddoc %}
+
+<div
+  class="hero__stat"
+  {% if block.settings.color != blank %}
+    style="color: {{ block.settings.color }};"
+  {% endif %}
+  {{ block.shopify_attributes }}
+>
+  <div class="stat__content">
+    <span class="hero__stat-value">{{ block.settings.value }}</span>
+    <span class="hero__stat-label text-muted">{{ block.settings.label }}</span>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Stat",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "value", "label": "Value", "default": "200+" },
+    { "type": "text", "id": "label", "label": "Label", "default": "International Brands" },
+    { "type": "color", "id": "color", "label": "Value color" }
+  ],
+  "presets": [{ "name": "Stat", "category": "Hero" }]
+}
+{% endschema %}
