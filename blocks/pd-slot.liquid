@@ -1,0 +1,57 @@
+{% doc %}
+  Block dùng cho sandbox static block. Cùng một file được render theo 2 đường:
+  - static: `{% content_for 'block', type: 'pd-slot', id: '...' %}` — vị trí do THEME quyết định
+  - dynamic: qua `{% content_for 'blocks' %}` — vị trí do MERCHANT quyết định
+
+  Nhận thêm param tuỳ ý khi render static (docs content_for: param truyền vào
+  trở thành biến top-level trong block, KHÔNG nằm dưới block.settings).
+
+  @param {string} [origin] - Nhãn tự do, chỉ truyền được khi render static.
+  @param {string} [accent] - Màu CSS cho viền, chỉ truyền được khi render static.
+
+  @example
+  {% content_for 'block', type: 'pd-slot', id: 'slot-a', origin: 'static', accent: '#c00' %}
+{% enddoc %}
+
+{% liquid
+  assign origin_label = origin | default: 'dynamic (content_for blocks)'
+%}
+
+<li
+  class="pd-card pd-card--slot"
+  {% if accent != blank %}
+    style="border-color: {{ accent }};"
+  {% endif %}
+  {{ block.shopify_attributes }}
+>
+  <div class="pd-card__body">
+    <span class="pd-card__tag">origin · {{ origin_label }}</span>
+    <h3 class="pd-card__title">{{ block.settings.label }}</h3>
+    <dl class="pd-slot__facts">
+      <dt>block.id</dt>
+      <dd><code>{{ block.id }}</code></dd>
+      <dt>block.type</dt>
+      <dd><code>{{ block.type }}</code></dd>
+      <dt>param <code>accent</code></dt>
+      <dd><code>{{ accent | default: 'nil' }}</code></dd>
+    </dl>
+    <p class="pd-card__text">{{ block.settings.note }}</p>
+  </div>
+</li>
+
+{% schema %}
+{
+  "name": "PD Slot",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "Slot" },
+    {
+      "type": "textarea",
+      "id": "note",
+      "label": "Note",
+      "default": "Sửa setting này rồi xem nó được ghi vào đâu trong templates/*.json."
+    }
+  ],
+  "presets": [{ "name": "PD Slot", "category": "PD sandbox" }]
+}
+{% endschema %}
