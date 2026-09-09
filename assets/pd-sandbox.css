@@ -141,3 +141,72 @@
   border: 1px dashed var(--color-border-strong);
   border-inline-start: 4px solid var(--color-star);
 }
+
+/* pd-default — sandbox cho attribute "default" của section schema */
+.pd-default {
+  margin-block: var(--section-spacing);
+}
+
+.pd-default__box {
+  padding: var(--space-24);
+  border: 3px solid var(--color-black);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.pd-badge--default {
+  color: var(--color-white);
+}
+
+.pd-default__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-h2);
+  line-height: var(--line-height-heading);
+  margin-block: var(--space-12) var(--space-8);
+}
+
+.pd-default__body {
+  font-size: var(--text-md);
+  color: var(--color-text-muted);
+}
+
+.pd-default__table {
+  width: 100%;
+  margin-block-start: var(--space-20);
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.pd-default__table th,
+.pd-default__table td {
+  padding: var(--space-6) var(--space-8);
+  text-align: start;
+  border-block-end: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+.pd-default__table th {
+  width: 10rem;
+  white-space: nowrap;
+  color: var(--color-text-subtle);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  font-size: var(--text-xs);
+  letter-spacing: 1px;
+}
+
+.pd-default__notes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-block: var(--space-16) 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-base);
+}
+
+.pd-default__notes li {
+  padding: var(--space-8) var(--space-12);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+}

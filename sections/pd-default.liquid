@@ -1,0 +1,72 @@
+{% # Sandbox cho attribute "default" — section này render STATIC qua {% raw  section  endraw %}
+{% # Không khai "presets" vì hai attribute đó xung khắc nhau %}
+
+{{ 'pd-sandbox.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign s = section.settings
+%}
+
+<section class="pd-default container">
+  <div class="pd-default__box" style="border-color: {{ s.accent }};">
+    <span class="pd-badge pd-badge--default" style="background: {{ s.accent }};">
+      {{ s.label }}
+    </span>
+
+    <h2 class="pd-default__title">{{ s.heading }}</h2>
+    <div class="pd-default__body">{{ s.body }}</div>
+
+    {% if section.blocks.size > 0 %}
+      <ul class="pd-default__notes" role="list">
+        {% for block in section.blocks %}
+          <li {{ block.shopify_attributes }}>
+            <strong>{{ block.settings.title }}</strong> — {{ block.settings.text }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PD default attr",
+  "tag": "section",
+  "class": "section-pd-default",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "label", "label": "Badge label", "default": "SETTING DEFAULT" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Setting-level default" },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>This text comes from the setting's own <strong>default</strong> key.</p>"
+    },
+    { "type": "color", "id": "accent", "label": "Accent", "default": "#000000" }
+  ],
+  "blocks": [
+    {
+      "type": "note",
+      "name": "Note",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Note" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Note text" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "default": {
+    "settings": {
+      "label": "ATTRIBUTE DEFAULT",
+      "heading": "Attribute Default",
+      "body": "<p>These values come from the schema-level <strong>default</strong> attribute, which overrides each setting's own default.</p>",
+      "accent": "#ff3333"
+    },
+    "blocks": [
+      { "type": "note", "settings": { "title": "Note A", "text": "Preloaded by the default attribute." } },
+      { "type": "note", "settings": { "title": "Note B", "text": "No editor action was needed." } }
+    ]
+  }
+}
+{% endschema %}
