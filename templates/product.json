@@ -10,20 +10,36 @@
           "type": "card",
           "settings": {
             "title": "Local A",
-            "text": "Markup nằm trong section, loop bằng for."
+            "text": "Markup lives inside the section."
           }
         },
         "card_2": {
           "type": "card",
           "settings": {
             "title": "Local B",
-            "text": "Schema khai inline, không dùng lại được."
+            "text": "Markup lives inside the section."
+          }
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "title": "Text 1",
+            "body": "<p>No <strong>limit</strong> key — capped only by max_blocks.</p>"
+          }
+        },
+        "text_2": {
+          "type": "text",
+          "settings": {
+            "title": "Text 2",
+            "body": "<p>A second one is fine; a third card would not be.</p>"
           }
         }
       },
       "block_order": [
         "card_1",
-        "card_2"
+        "card_2",
+        "text_1",
+        "text_2"
       ]
     },
     "pd_theme": {
