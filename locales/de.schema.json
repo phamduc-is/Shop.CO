@@ -1,0 +1,313 @@
+{
+  "sections": {
+    "announcement": {
+      "name": "Ankündigungsleiste",
+      "settings": {
+        "message": {
+          "label": "Nachricht"
+        }
+      }
+    },
+    "collection-list": {
+      "name": "Kategorieliste",
+      "settings": {
+        "heading": {
+          "label": "Überschrift"
+        },
+        "layout": {
+          "label": "Layout"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Kategorieliste",
+          "category": "Banner"
+        },
+        "2": {
+          "name": "Kategorieraster"
+        }
+      }
+    },
+    "featured-collection": {
+      "name": "Ausgewählte Kategorie",
+      "settings": {
+        "collection_title": {
+          "label": "Überschrift"
+        },
+        "collection": {
+          "label": "Kategorie"
+        },
+        "product_to_show": {
+          "label": "Anzuzeigende Produkte"
+        },
+        "button_label": {
+          "label": "Button-Beschriftung"
+        },
+        "button_url": {
+          "label": "Button-Link",
+          "info": "Leer lassen, um auf die ausgewählte Kategorie zu verlinken."
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Ausgewählte Kategorie"
+        }
+      }
+    },
+    "hero": {
+      "name": "Hero",
+      "settings": {
+        "heading": {
+          "label": "Überschrift"
+        },
+        "image": {
+          "label": "Bild"
+        },
+        "image_mobile": {
+          "label": "Mobiles Bild"
+        },
+        "content_position": {
+          "label": "Inhaltsposition"
+        },
+        "content_position_mobile": {
+          "label": "Inhaltsposition (mobil)"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Hero 2"
+        }
+      }
+    },
+    "pd-default": {
+      "name": "PD default attr",
+      "settings": {
+        "header__1": {
+          "content": "Inhalt"
+        },
+        "label": {
+          "label": "Badge-Beschriftung"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "body": {
+          "label": "Textkörper"
+        },
+        "accent": {
+          "label": "Akzent"
+        }
+      },
+      "blocks": {
+        "note": {
+          "name": "Notiz",
+          "settings": {
+            "title": {
+              "label": "Titel"
+            },
+            "text": {
+              "label": "Text"
+            }
+          }
+        }
+      }
+    },
+    "pd-local": {
+      "name": "PD local",
+      "settings": {
+        "header__1": {
+          "content": "Inhalt"
+        },
+        "heading": {
+          "label": "Überschrift"
+        }
+      },
+      "blocks": {
+        "card": {
+          "name": "Karten-Block",
+          "settings": {
+            "title": {
+              "label": "Titel"
+            },
+            "text": {
+              "label": "Text"
+            },
+            "image": {
+              "label": "Bild",
+              "info": "Leer lassen, um einen Platzhalter zu verwenden."
+            }
+          }
+        },
+        "text": {
+          "name": "Text-Block",
+          "settings": {
+            "title": {
+              "label": "Titel"
+            },
+            "body": {
+              "label": "Textkörper"
+            }
+          }
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "PD local",
+          "category": "Banner"
+        },
+        "2": {
+          "name": "PD local 2"
+        }
+      }
+    },
+    "pd-theme": {
+      "name": "PD theme block",
+      "settings": {
+        "header__1": {
+          "content": "Inhalt"
+        },
+        "heading": {
+          "label": "Überschrift"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "PD theme block 2"
+        }
+      }
+    }
+  },
+  "blocks": {
+    "collection-card": {
+      "name": "Kategorie-Karte",
+      "settings": {
+        "collection": {
+          "label": "Kategorie"
+        },
+        "title": {
+          "label": "Kategorietitel",
+          "info": "Leer lassen, um den Kategorienamen zu verwenden."
+        },
+        "image": {
+          "label": "Kategoriebild",
+          "info": "Leer lassen, um das Titelbild der Kategorie zu verwenden."
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Kategorie-Karte"
+        }
+      }
+    },
+    "hero-button": {
+      "name": "Button",
+      "settings": {
+        "label": {
+          "label": "Beschriftung"
+        },
+        "url": {
+          "label": "Link"
+        },
+        "style": {
+          "label": "Stil"
+        },
+        "color": {
+          "label": "Textfarbe"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Button",
+          "category": "Hero"
+        }
+      }
+    },
+    "hero-stat": {
+      "name": "Kennzahl",
+      "settings": {
+        "value": {
+          "label": "Wert"
+        },
+        "label": {
+          "label": "Beschriftung"
+        },
+        "color": {
+          "label": "Wertfarbe"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Kennzahl",
+          "category": "Hero"
+        }
+      }
+    },
+    "hero-stats": {
+      "name": "Kennzahlen",
+      "presets": {
+        "1": {
+          "name": "Kennzahlen",
+          "category": "Hero"
+        }
+      }
+    },
+    "hero-text": {
+      "name": "Beschreibung",
+      "settings": {
+        "text": {
+          "label": "Text"
+        },
+        "color": {
+          "label": "Textfarbe"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Beschreibung",
+          "category": "Hero"
+        }
+      }
+    },
+    "pd-card": {
+      "name": "PD Card",
+      "settings": {
+        "title": {
+          "label": "Titel"
+        },
+        "text": {
+          "label": "Text"
+        },
+        "image": {
+          "label": "Bild",
+          "info": "Leer lassen, um einen Platzhalter zu verwenden."
+        },
+        "hide_media": {
+          "label": "Bild ausblenden",
+          "info": "Aktivieren, wenn die Karte als Container für untergeordnete Karten dient."
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "PD Card 2"
+        }
+      }
+    },
+    "pd-slot": {
+      "name": "PD Slot",
+      "settings": {
+        "label": {
+          "label": "Beschriftung"
+        },
+        "note": {
+          "label": "Notiz"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "PD Slot",
+          "category": "PD sandbox"
+        }
+      }
+    }
+  }
+}

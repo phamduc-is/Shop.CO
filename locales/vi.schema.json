@@ -1,0 +1,313 @@
+{
+  "sections": {
+    "announcement": {
+      "name": "Thanh thông báo",
+      "settings": {
+        "message": {
+          "label": "Nội dung"
+        }
+      }
+    },
+    "collection-list": {
+      "name": "Danh sách collection",
+      "settings": {
+        "heading": {
+          "label": "Tiêu đề"
+        },
+        "layout": {
+          "label": "Bố cục"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Danh sách collection",
+          "category": "Banner"
+        },
+        "2": {
+          "name": "Lưới collection"
+        }
+      }
+    },
+    "featured-collection": {
+      "name": "Collection nổi bật",
+      "settings": {
+        "collection_title": {
+          "label": "Tiêu đề"
+        },
+        "collection": {
+          "label": "Collection"
+        },
+        "product_to_show": {
+          "label": "Số sản phẩm hiển thị"
+        },
+        "button_label": {
+          "label": "Nhãn nút"
+        },
+        "button_url": {
+          "label": "Liên kết nút",
+          "info": "Bỏ trống sẽ tự trỏ về collection đã chọn."
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Collection nổi bật"
+        }
+      }
+    },
+    "hero": {
+      "name": "Hero",
+      "settings": {
+        "heading": {
+          "label": "Tiêu đề"
+        },
+        "image": {
+          "label": "Ảnh"
+        },
+        "image_mobile": {
+          "label": "Ảnh mobile"
+        },
+        "content_position": {
+          "label": "Vị trí nội dung"
+        },
+        "content_position_mobile": {
+          "label": "Vị trí nội dung (mobile)"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Hero 2"
+        }
+      }
+    },
+    "pd-default": {
+      "name": "PD default attr",
+      "settings": {
+        "header__1": {
+          "content": "Nội dung"
+        },
+        "label": {
+          "label": "Nhãn badge"
+        },
+        "heading": {
+          "label": "Tiêu đề"
+        },
+        "body": {
+          "label": "Nội dung chính"
+        },
+        "accent": {
+          "label": "Màu nhấn"
+        }
+      },
+      "blocks": {
+        "note": {
+          "name": "Ghi chú",
+          "settings": {
+            "title": {
+              "label": "Tiêu đề"
+            },
+            "text": {
+              "label": "Văn bản"
+            }
+          }
+        }
+      }
+    },
+    "pd-local": {
+      "name": "PD local",
+      "settings": {
+        "header__1": {
+          "content": "Nội dung"
+        },
+        "heading": {
+          "label": "Tiêu đề"
+        }
+      },
+      "blocks": {
+        "card": {
+          "name": "Block card",
+          "settings": {
+            "title": {
+              "label": "Tiêu đề"
+            },
+            "text": {
+              "label": "Văn bản"
+            },
+            "image": {
+              "label": "Ảnh",
+              "info": "Bỏ trống sẽ dùng placeholder."
+            }
+          }
+        },
+        "text": {
+          "name": "Block text",
+          "settings": {
+            "title": {
+              "label": "Tiêu đề"
+            },
+            "body": {
+              "label": "Nội dung chính"
+            }
+          }
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "PD local",
+          "category": "Banner"
+        },
+        "2": {
+          "name": "PD local 2"
+        }
+      }
+    },
+    "pd-theme": {
+      "name": "PD theme block",
+      "settings": {
+        "header__1": {
+          "content": "Nội dung"
+        },
+        "heading": {
+          "label": "Tiêu đề"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "PD theme block 2"
+        }
+      }
+    }
+  },
+  "blocks": {
+    "collection-card": {
+      "name": "Thẻ collection",
+      "settings": {
+        "collection": {
+          "label": "Collection"
+        },
+        "title": {
+          "label": "Tiêu đề collection",
+          "info": "Bỏ trống sẽ lấy tên collection."
+        },
+        "image": {
+          "label": "Ảnh collection",
+          "info": "Bỏ trống sẽ lấy ảnh đại diện của collection."
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Thẻ collection"
+        }
+      }
+    },
+    "hero-button": {
+      "name": "Nút",
+      "settings": {
+        "label": {
+          "label": "Nhãn"
+        },
+        "url": {
+          "label": "Liên kết"
+        },
+        "style": {
+          "label": "Kiểu"
+        },
+        "color": {
+          "label": "Màu chữ"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Nút",
+          "category": "Hero"
+        }
+      }
+    },
+    "hero-stat": {
+      "name": "Số liệu",
+      "settings": {
+        "value": {
+          "label": "Giá trị"
+        },
+        "label": {
+          "label": "Nhãn"
+        },
+        "color": {
+          "label": "Màu giá trị"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Số liệu",
+          "category": "Hero"
+        }
+      }
+    },
+    "hero-stats": {
+      "name": "Nhóm số liệu",
+      "presets": {
+        "1": {
+          "name": "Nhóm số liệu",
+          "category": "Hero"
+        }
+      }
+    },
+    "hero-text": {
+      "name": "Mô tả",
+      "settings": {
+        "text": {
+          "label": "Văn bản"
+        },
+        "color": {
+          "label": "Màu chữ"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Mô tả",
+          "category": "Hero"
+        }
+      }
+    },
+    "pd-card": {
+      "name": "PD Card",
+      "settings": {
+        "title": {
+          "label": "Tiêu đề"
+        },
+        "text": {
+          "label": "Văn bản"
+        },
+        "image": {
+          "label": "Ảnh",
+          "info": "Bỏ trống sẽ dùng placeholder."
+        },
+        "hide_media": {
+          "label": "Ẩn ảnh",
+          "info": "Bật khi card dùng làm khung chứa card con."
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "PD Card 2"
+        }
+      }
+    },
+    "pd-slot": {
+      "name": "PD Slot",
+      "settings": {
+        "label": {
+          "label": "Nhãn"
+        },
+        "note": {
+          "label": "Ghi chú"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "PD Slot",
+          "category": "PD sandbox"
+        }
+      }
+    }
+  }
+}
