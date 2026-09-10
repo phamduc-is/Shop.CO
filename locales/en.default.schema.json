@@ -2,20 +2,312 @@
   "sections": {
     "announcement": {
       "name": "Announcement bar",
-      "message": "Message"
+      "settings": {
+        "message": {
+          "label": "Message"
+        }
+      }
+    },
+    "collection-list": {
+      "name": "Collection List",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "layout": {
+          "label": "Layout"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Collection List",
+          "category": "Banners"
+        },
+        "2": {
+          "name": "Collection Grid"
+        }
+      }
+    },
+    "featured-collection": {
+      "name": "Featured Collection",
+      "settings": {
+        "collection_title": {
+          "label": "Heading"
+        },
+        "collection": {
+          "label": "Collection"
+        },
+        "product_to_show": {
+          "label": "Products to show"
+        },
+        "button_label": {
+          "label": "Button label"
+        },
+        "button_url": {
+          "label": "Button link",
+          "info": "Leave blank to link to the selected collection."
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Featured Collection"
+        }
+      }
+    },
+    "hero": {
+      "name": "Hero",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "image": {
+          "label": "Image"
+        },
+        "image_mobile": {
+          "label": "Mobile image"
+        },
+        "content_position": {
+          "label": "Content position"
+        },
+        "content_position_mobile": {
+          "label": "Content position (Mobile)"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Hero 2"
+        }
+      }
+    },
+    "pd-default": {
+      "name": "PD default attr",
+      "settings": {
+        "header__1": {
+          "content": "Content"
+        },
+        "label": {
+          "label": "Badge label"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "body": {
+          "label": "Body"
+        },
+        "accent": {
+          "label": "Accent"
+        }
+      },
+      "blocks": {
+        "note": {
+          "name": "Note",
+          "settings": {
+            "title": {
+              "label": "Title"
+            },
+            "text": {
+              "label": "Text"
+            }
+          }
+        }
+      }
+    },
+    "pd-local": {
+      "name": "PD local",
+      "settings": {
+        "header__1": {
+          "content": "Content"
+        },
+        "heading": {
+          "label": "Heading"
+        }
+      },
+      "blocks": {
+        "card": {
+          "name": "Card block",
+          "settings": {
+            "title": {
+              "label": "Title"
+            },
+            "text": {
+              "label": "Text"
+            },
+            "image": {
+              "label": "Image",
+              "info": "Leave blank to use a placeholder."
+            }
+          }
+        },
+        "text": {
+          "name": "Text block",
+          "settings": {
+            "title": {
+              "label": "Title"
+            },
+            "body": {
+              "label": "Body"
+            }
+          }
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "PD local",
+          "category": "Banners"
+        },
+        "2": {
+          "name": "PD local 2"
+        }
+      }
+    },
+    "pd-theme": {
+      "name": "PD theme block",
+      "settings": {
+        "header__1": {
+          "content": "Content"
+        },
+        "heading": {
+          "label": "Heading"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "PD theme block 2"
+        }
+      }
     }
   },
   "blocks": {
-    "header_logo": {
-      "name": "Logo",
-      "logo": "Logo image",
-      "logo_width": "Logo width",
-      "logo_text": "Logo text",
-      "logo_text_info": "Shown when no logo image is uploaded. Defaults to the store name."
+    "collection-card": {
+      "name": "Collection Card",
+      "settings": {
+        "collection": {
+          "label": "Collection"
+        },
+        "title": {
+          "label": "Collection Title",
+          "info": "Leave blank to use the collection name."
+        },
+        "image": {
+          "label": "Collection Image",
+          "info": "Leave blank to use the collection's featured image."
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Collection Card"
+        }
+      }
     },
-    "hero_text": {
-      "name": "Text",
-      "text": "Description"
+    "hero-button": {
+      "name": "Button",
+      "settings": {
+        "label": {
+          "label": "Label"
+        },
+        "url": {
+          "label": "Link"
+        },
+        "style": {
+          "label": "Style"
+        },
+        "color": {
+          "label": "Text color"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Button",
+          "category": "Hero"
+        }
+      }
+    },
+    "hero-stat": {
+      "name": "Stat",
+      "settings": {
+        "value": {
+          "label": "Value"
+        },
+        "label": {
+          "label": "Label"
+        },
+        "color": {
+          "label": "Value color"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Stat",
+          "category": "Hero"
+        }
+      }
+    },
+    "hero-stats": {
+      "name": "Stats",
+      "presets": {
+        "1": {
+          "name": "Stats",
+          "category": "Hero"
+        }
+      }
+    },
+    "hero-text": {
+      "name": "Description",
+      "settings": {
+        "text": {
+          "label": "Text"
+        },
+        "color": {
+          "label": "Text color"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Description",
+          "category": "Hero"
+        }
+      }
+    },
+    "pd-card": {
+      "name": "PD Card",
+      "settings": {
+        "title": {
+          "label": "Title"
+        },
+        "text": {
+          "label": "Text"
+        },
+        "image": {
+          "label": "Image",
+          "info": "Leave blank to use a placeholder."
+        },
+        "hide_media": {
+          "label": "Hide image",
+          "info": "Enable when the card is used as a container for child cards."
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "PD Card 2"
+        }
+      }
+    },
+    "pd-slot": {
+      "name": "PD Slot",
+      "settings": {
+        "label": {
+          "label": "Label"
+        },
+        "note": {
+          "label": "Note"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "PD Slot",
+          "category": "PD sandbox"
+        }
+      }
     }
   }
 }

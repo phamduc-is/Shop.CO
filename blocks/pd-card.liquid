@@ -38,21 +38,47 @@
 
 {% schema %}
 {
-  "name": "PD Card",
+  "name": "t:blocks.pd-card.name",
   "tag": null,
   "settings": [
-    { "type": "text", "id": "title", "label": "Title", "default": "Theme card"},
-    { "type": "text", "id": "text", "label": "Text", "default": "Markup ở blocks/pd-card.liquid." },
-    { "type": "image_picker", "id": "image", "label": "Image", "info": "Bỏ trống sẽ dùng placeholder." },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:blocks.pd-card.settings.title.label",
+      "default": "Theme card"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "t:blocks.pd-card.settings.text.label",
+      "default": "Markup ở blocks/pd-card.liquid."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:blocks.pd-card.settings.image.label",
+      "info": "t:blocks.pd-card.settings.image.info"
+    },
     {
       "type": "checkbox",
       "id": "hide_media",
-      "label": "Hide image",
+      "label": "t:blocks.pd-card.settings.hide_media.label",
       "default": false,
-      "info": "Bật khi card dùng làm khung chứa card con."
+      "info": "t:blocks.pd-card.settings.hide_media.info"
     }
   ],
-  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
-  "presets": [{ "name": "PD Card 2" }]
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.pd-card.presets.1.name"
+    }
+  ]
 }
 {% endschema %}

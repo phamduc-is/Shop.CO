@@ -18,12 +18,26 @@
 
 {% schema %}
 {
-  "name": "Description",
+  "name": "t:blocks.hero-text.name",
   "tag": null,
   "settings": [
-    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>text</p>" },
-    { "type": "color", "id": "color", "label": "Text color" }
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:blocks.hero-text.settings.text.label",
+      "default": "<p>text</p>"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "t:blocks.hero-text.settings.color.label"
+    }
   ],
-  "presets": [{ "name": "Description", "category": "Hero" }]
+  "presets": [
+    {
+      "name": "t:blocks.hero-text.presets.1.name",
+      "category": "t:blocks.hero-text.presets.1.category"
+    }
+  ]
 }
 {% endschema %}

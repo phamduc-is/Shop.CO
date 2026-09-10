@@ -17,27 +17,31 @@
 
 {% schema %}
 {
-  "name": "Collection Card",
+  "name": "t:blocks.collection-card.name",
   "tag": null,
   "settings": [
     {
       "type": "collection",
       "id": "collection",
-      "label": "Collection"
+      "label": "t:blocks.collection-card.settings.collection.label"
     },
     {
       "type": "text",
       "id": "title",
-      "label": "Collection Title",
-      "info": "Bỏ trống sẽ lấy tên collection."
+      "label": "t:blocks.collection-card.settings.title.label",
+      "info": "t:blocks.collection-card.settings.title.info"
     },
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Collection Image",
-      "info": "Bỏ trống sẽ lấy ảnh đại diện của collection."
+      "label": "t:blocks.collection-card.settings.image.label",
+      "info": "t:blocks.collection-card.settings.image.info"
     }
   ],
-  "presets": [{ "name": "Collection Card" }]
+  "presets": [
+    {
+      "name": "t:blocks.collection-card.presets.1.name"
+    }
+  ]
 }
 {% endschema %}

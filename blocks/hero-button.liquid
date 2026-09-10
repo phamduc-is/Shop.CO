@@ -21,23 +21,47 @@
 
 {% schema %}
 {
-  "name": "Button",
+  "name": "t:blocks.hero-button.name",
   "tag": null,
   "settings": [
-    { "type": "text", "id": "label", "label": "Label", "default": "Shop Now" },
-    { "type": "url", "id": "url", "label": "Link" },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:blocks.hero-button.settings.label.label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "t:blocks.hero-button.settings.url.label"
+    },
     {
       "type": "select",
       "id": "style",
-      "label": "Style",
+      "label": "t:blocks.hero-button.settings.style.label",
       "options": [
-        { "value": "primary", "label": "Primary" },
-        { "value": "secondary", "label": "Secondary" }
+        {
+          "value": "primary",
+          "label": "Primary"
+        },
+        {
+          "value": "secondary",
+          "label": "Secondary"
+        }
       ],
       "default": "primary"
     },
-    { "type": "color", "id": "color", "label": "Text color" }
+    {
+      "type": "color",
+      "id": "color",
+      "label": "t:blocks.hero-button.settings.color.label"
+    }
   ],
-  "presets": [{ "name": "Button", "category": "Hero" }]
+  "presets": [
+    {
+      "name": "t:blocks.hero-button.presets.1.name",
+      "category": "t:blocks.hero-button.presets.1.category"
+    }
+  ]
 }
 {% endschema %}

@@ -30,28 +30,56 @@
 
 {% schema %}
 {
-  "name": "PD default attr",
+  "name": "t:sections.pd-default.name",
   "tag": "section",
   "class": "section-pd-default",
   "settings": [
-    { "type": "header", "content": "Content" },
-    { "type": "text", "id": "label", "label": "Badge label", "default": "SETTING DEFAULT" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Setting-level default" },
+    {
+      "type": "header",
+      "content": "t:sections.pd-default.settings.header__1.content"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:sections.pd-default.settings.label.label",
+      "default": "SETTING DEFAULT"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.pd-default.settings.heading.label",
+      "default": "Setting-level default"
+    },
     {
       "type": "richtext",
       "id": "body",
-      "label": "Body",
+      "label": "t:sections.pd-default.settings.body.label",
       "default": "<p>This text comes from the setting's own <strong>default</strong> key.</p>"
     },
-    { "type": "color", "id": "accent", "label": "Accent", "default": "#000000" }
+    {
+      "type": "color",
+      "id": "accent",
+      "label": "t:sections.pd-default.settings.accent.label",
+      "default": "#000000"
+    }
   ],
   "blocks": [
     {
       "type": "note",
-      "name": "Note",
+      "name": "t:sections.pd-default.blocks.note.name",
       "settings": [
-        { "type": "text", "id": "title", "label": "Title", "default": "Note" },
-        { "type": "text", "id": "text", "label": "Text", "default": "Note text" }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.pd-default.blocks.note.settings.title.label",
+          "default": "Note"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:sections.pd-default.blocks.note.settings.text.label",
+          "default": "Note text"
+        }
       ]
     }
   ],
@@ -64,8 +92,20 @@
       "accent": "#ff3333"
     },
     "blocks": [
-      { "type": "note", "settings": { "title": "Note A", "text": "Preloaded by the default attribute." } },
-      { "type": "note", "settings": { "title": "Note B", "text": "No editor action was needed." } }
+      {
+        "type": "note",
+        "settings": {
+          "title": "Note A",
+          "text": "Preloaded by the default attribute."
+        }
+      },
+      {
+        "type": "note",
+        "settings": {
+          "title": "Note B",
+          "text": "No editor action was needed."
+        }
+      }
     ]
   }
 }

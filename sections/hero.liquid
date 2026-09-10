@@ -24,59 +24,134 @@
 
 {% schema %}
 {
-  "name": "Hero",
+  "name": "t:sections.hero.name",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "heading", "label": "Heading" },
-    { "type": "image_picker", "id": "image", "label": "Image" },
-    { "type": "image_picker", "id": "image_mobile", "label": "Mobile image" },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.hero.settings.heading.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.hero.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "t:sections.hero.settings.image_mobile.label"
+    },
     {
       "type": "select",
       "id": "content_position",
-      "label": "Content position",
+      "label": "t:sections.hero.settings.content_position.label",
       "options": [
-        { "value": "top-left", "label": "Top left" },
-        { "value": "top-center", "label": "Top center" },
-        { "value": "center-left", "label": "Center left" },
-        { "value": "center-center", "label": "Center" },
-        { "value": "bottom-left", "label": "Bottom left" },
-        { "value": "bottom-center", "label": "Bottom center" }
+        {
+          "value": "top-left",
+          "label": "Top left"
+        },
+        {
+          "value": "top-center",
+          "label": "Top center"
+        },
+        {
+          "value": "center-left",
+          "label": "Center left"
+        },
+        {
+          "value": "center-center",
+          "label": "Center"
+        },
+        {
+          "value": "bottom-left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom-center",
+          "label": "Bottom center"
+        }
       ],
       "default": "center-left"
     },
     {
       "type": "select",
       "id": "content_position_mobile",
-      "label": "Content position (Mobile)",
+      "label": "t:sections.hero.settings.content_position_mobile.label",
       "options": [
-        { "value": "top-left", "label": "Top left" },
-        { "value": "top-center", "label": "Top center" },
-        { "value": "center-left", "label": "Center left" },
-        { "value": "center-center", "label": "Center" },
-        { "value": "bottom-left", "label": "Bottom left" },
-        { "value": "bottom-center", "label": "Bottom center" }
+        {
+          "value": "top-left",
+          "label": "Top left"
+        },
+        {
+          "value": "top-center",
+          "label": "Top center"
+        },
+        {
+          "value": "center-left",
+          "label": "Center left"
+        },
+        {
+          "value": "center-center",
+          "label": "Center"
+        },
+        {
+          "value": "bottom-left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom-center",
+          "label": "Bottom center"
+        }
       ],
       "default": "top-center"
     }
   ],
   "blocks": [
-    { "type": "hero-text" },
-    { "type": "hero-button" },
-    { "type": "hero-stats" }
+    {
+      "type": "hero-text"
+    },
+    {
+      "type": "hero-button"
+    },
+    {
+      "type": "hero-stats"
+    }
   ],
-  
   "presets": [
     {
-      "name": "Hero 2",
+      "name": "t:sections.hero.presets.1.name",
       "blocks": [
-        { "type": "hero-text" },
-        { "type": "hero-button" },
+        {
+          "type": "hero-text"
+        },
+        {
+          "type": "hero-button"
+        },
         {
           "type": "hero-stats",
           "blocks": [
-            { "type": "hero-stat", "settings": { "value": "200+", "label": "International Brands" } },
-            { "type": "hero-stat", "settings": { "value": "2,000+", "label": "High-Quality Products" } },
-            { "type": "hero-stat", "settings": { "value": "30,000+", "label": "Happy Customers" } }
+            {
+              "type": "hero-stat",
+              "settings": {
+                "value": "200+",
+                "label": "International Brands"
+              }
+            },
+            {
+              "type": "hero-stat",
+              "settings": {
+                "value": "2,000+",
+                "label": "High-Quality Products"
+              }
+            },
+            {
+              "type": "hero-stat",
+              "settings": {
+                "value": "30,000+",
+                "label": "Happy Customers"
+              }
+            }
           ]
         }
       ]

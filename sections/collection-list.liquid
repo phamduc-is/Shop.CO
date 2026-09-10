@@ -7,33 +7,43 @@
 </div>
 {% schema %}
 {
-  "name": "Collection List",
+  "name": "t:sections.collection-list.name",
   "tag": "section",
   "class": "container",
   "settings": [
     {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
+      "label": "t:sections.collection-list.settings.heading.label",
       "default": "BROWSE BY DRESS STYLE"
     },
     {
       "type": "select",
       "id": "layout",
-      "label": "Layout",
+      "label": "t:sections.collection-list.settings.layout.label",
       "options": [
-        { "value": "equal", "label": "Equal — 2 per row, same size" },
-        { "value": "contrast", "label": "Contrast — narrow / wide alternating" }
+        {
+          "value": "equal",
+          "label": "Equal — 2 per row, same size"
+        },
+        {
+          "value": "contrast",
+          "label": "Contrast — narrow / wide alternating"
+        }
       ],
       "default": "contrast"
     }
   ],
   "max_blocks": 4,
-  "blocks": [{ "type": "collection-card" }],
+  "blocks": [
+    {
+      "type": "collection-card"
+    }
+  ],
   "presets": [
     {
-      "name": "Collection List",
-      "category": "Banners",
+      "name": "t:sections.collection-list.presets.1.name",
+      "category": "t:sections.collection-list.presets.1.category",
       "blocks": [
         {
           "type": "collection-card"
@@ -50,7 +60,7 @@
       ]
     },
     {
-      "name": "Collection Grid",
+      "name": "t:sections.collection-list.presets.2.name",
       "blocks": [
         {
           "type": "collection-card"

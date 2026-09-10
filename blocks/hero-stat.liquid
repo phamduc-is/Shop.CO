@@ -21,13 +21,32 @@
 
 {% schema %}
 {
-  "name": "Stat",
+  "name": "t:blocks.hero-stat.name",
   "tag": null,
   "settings": [
-    { "type": "text", "id": "value", "label": "Value", "default": "200+" },
-    { "type": "text", "id": "label", "label": "Label", "default": "International Brands" },
-    { "type": "color", "id": "color", "label": "Value color" }
+    {
+      "type": "text",
+      "id": "value",
+      "label": "t:blocks.hero-stat.settings.value.label",
+      "default": "200+"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:blocks.hero-stat.settings.label.label",
+      "default": "International Brands"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "t:blocks.hero-stat.settings.color.label"
+    }
   ],
-  "presets": [{ "name": "Stat", "category": "Hero" }]
+  "presets": [
+    {
+      "name": "t:blocks.hero-stat.presets.1.name",
+      "category": "t:blocks.hero-stat.presets.1.category"
+    }
+  ]
 }
 {% endschema %}

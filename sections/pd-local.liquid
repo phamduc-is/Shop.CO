@@ -62,56 +62,113 @@
 
 {% schema %}
 {
-  "name": "PD local",
+  "name": "t:sections.pd-local.name",
   "tag": "section",
   "class": "section-pd-local",
   "limit": 2,
   "settings": [
-    { "type": "header", "content": "Content" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Local block sandbox" }
+    {
+      "type": "header",
+      "content": "t:sections.pd-local.settings.header__1.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.pd-local.settings.heading.label",
+      "default": "Local block sandbox"
+    }
   ],
   "blocks": [
     {
       "type": "card",
-      "name": "Card block",
+      "name": "t:sections.pd-local.blocks.card.name",
       "limit": 2,
       "settings": [
-        { "type": "text", "id": "title", "label": "Title", "default": "Local card" },
-        { "type": "text", "id": "text", "label": "Text", "default": "Markup lives inside the section." },
-        { "type": "image_picker", "id": "image", "label": "Image", "info": "Bỏ trống sẽ dùng placeholder." }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.pd-local.blocks.card.settings.title.label",
+          "default": "Local card"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:sections.pd-local.blocks.card.settings.text.label",
+          "default": "Markup lives inside the section."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.pd-local.blocks.card.settings.image.label",
+          "info": "t:sections.pd-local.blocks.card.settings.image.info"
+        }
       ]
     },
     {
       "type": "text",
-      "name": "Text block",
+      "name": "t:sections.pd-local.blocks.text.name",
       "settings": [
-        { "type": "text", "id": "title", "label": "Title", "default": "Text block" },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.pd-local.blocks.text.settings.title.label",
+          "default": "Text block"
+        },
         {
           "type": "richtext",
           "id": "body",
-          "label": "Body",
+          "label": "t:sections.pd-local.blocks.text.settings.body.label",
           "default": "<p>No <strong>limit</strong> key, so only max_blocks caps this one.</p>"
         }
       ]
     }
   ],
   "max_blocks": 5,
-  "enabled_on": {"templates": ["product"]},
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
   "presets": [
     {
-      "name": "PD local",
-      "category": "Banners",
+      "name": "t:sections.pd-local.presets.1.name",
+      "category": "t:sections.pd-local.presets.1.category",
       "blocks": [
-        { "type": "card", "settings": { "title": "Local A" } },
-        { "type": "card", "settings": { "title": "Local B" } },
-        { "type": "text", "settings": { "title": "Text 1" } }
+        {
+          "type": "card",
+          "settings": {
+            "title": "Local A"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Local B"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "title": "Text 1"
+          }
+        }
       ]
     },
     {
-      "name": "PD local 2",
+      "name": "t:sections.pd-local.presets.2.name",
       "blocks": [
-        { "type": "card", "settings": { "title": "Local A" } },
-        { "type": "text", "settings": { "title": "Text 1" } }
+        {
+          "type": "card",
+          "settings": {
+            "title": "Local A"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "title": "Text 1"
+          }
+        }
       ]
     }
   ]

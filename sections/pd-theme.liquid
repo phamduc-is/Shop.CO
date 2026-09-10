@@ -19,23 +19,51 @@
 
 {% schema %}
 {
-  "name": "PD theme block",
+  "name": "t:sections.pd-theme.name",
   "tag": "section",
   "class": "section-pd-theme",
   "limit": 2,
   "settings": [
-    { "type": "header", "content": "Content" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Theme block sandbox" }
+    {
+      "type": "header",
+      "content": "t:sections.pd-theme.settings.header__1.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.pd-theme.settings.heading.label",
+      "default": "Theme block sandbox"
+    }
   ],
-  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
   "max_blocks": 8,
   "presets": [
     {
-      "name": "PD theme block 2",
+      "name": "t:sections.pd-theme.presets.1.name",
       "blocks": [
-        { "type": "pd-card", "settings": {} },
-        { "type": "pd-card", "settings": { "title": "Theme B" } },
-        { "type": "pd-card", "settings": { "title": "ThemeCCCCsCC"} }
+        {
+          "type": "pd-card",
+          "settings": {}
+        },
+        {
+          "type": "pd-card",
+          "settings": {
+            "title": "Theme B"
+          }
+        },
+        {
+          "type": "pd-card",
+          "settings": {
+            "title": "ThemeCCCCsCC"
+          }
+        }
       ]
     }
   ]

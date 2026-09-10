@@ -41,17 +41,27 @@
 
 {% schema %}
 {
-  "name": "PD Slot",
+  "name": "t:blocks.pd-slot.name",
   "tag": null,
   "settings": [
-    { "type": "text", "id": "label", "label": "Label", "default": "Slot" },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:blocks.pd-slot.settings.label.label",
+      "default": "Slot"
+    },
     {
       "type": "textarea",
       "id": "note",
-      "label": "Note",
+      "label": "t:blocks.pd-slot.settings.note.label",
       "default": "Sửa setting này rồi xem nó được ghi vào đâu trong templates/*.json."
     }
   ],
-  "presets": [{ "name": "PD Slot", "category": "PD sandbox" }]
+  "presets": [
+    {
+      "name": "t:blocks.pd-slot.presets.1.name",
+      "category": "t:blocks.pd-slot.presets.1.category"
+    }
+  ]
 }
 {% endschema %}

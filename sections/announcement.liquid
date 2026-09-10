@@ -6,16 +6,18 @@
 </div>
 {% schema %}
 {
-  "name": "Announcement bar",
+  "name": "t:sections.announcement.name",
   "tag": "div",
   "settings": [
     {
       "type": "text",
       "id": "message",
-      "label": "t:sections.announcement.message",
+      "label": "t:sections.announcement.settings.message.label",
       "default": "Sign up and get 20% off to your first order."
     }
   ],
-  "disabled_on": {"groups": ["header"]}
+  "disabled_on": {
+    "groups": ["header"]
+  }
 }
 {% endschema %}

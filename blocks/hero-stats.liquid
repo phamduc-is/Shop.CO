@@ -15,18 +15,40 @@
 
 {% schema %}
 {
-  "name": "Stats",
+  "name": "t:blocks.hero-stats.name",
   "tag": null,
   "settings": [],
-  "blocks": [{ "type": "hero-stat" }],
+  "blocks": [
+    {
+      "type": "hero-stat"
+    }
+  ],
   "presets": [
     {
-      "name": "Stats",
-      "category": "Hero",
+      "name": "t:blocks.hero-stats.presets.1.name",
+      "category": "t:blocks.hero-stats.presets.1.category",
       "blocks": [
-        { "type": "hero-stat", "settings": { "value": "200+", "label": "International Brands" } },
-        { "type": "hero-stat", "settings": { "value": "2,000+", "label": "High-Quality Products" } },
-        { "type": "hero-stat", "settings": { "value": "30,000+", "label": "Happy Customers" } }
+        {
+          "type": "hero-stat",
+          "settings": {
+            "value": "200+",
+            "label": "International Brands"
+          }
+        },
+        {
+          "type": "hero-stat",
+          "settings": {
+            "value": "2,000+",
+            "label": "High-Quality Products"
+          }
+        },
+        {
+          "type": "hero-stat",
+          "settings": {
+            "value": "30,000+",
+            "label": "Happy Customers"
+          }
+        }
       ]
     }
   ]
