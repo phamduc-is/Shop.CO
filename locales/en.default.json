@@ -4,6 +4,10 @@
       "close": "Close",
       "previous": "Previous",
       "next": "Next"
+    },
+    "search": {
+      "search": "Search",
+      "search_for_products": "Search for products..."
     }
   },
   "sections": {
