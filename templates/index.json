@@ -14,7 +14,7 @@
           }
         },
         "cta": {
-          "type": "hero-button",
+          "type": "button",
           "settings": {
             "label": "Shop Now",
             "style": "primary"
