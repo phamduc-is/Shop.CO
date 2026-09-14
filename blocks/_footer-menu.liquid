@@ -1,0 +1,33 @@
+{% assign links = block.settings.menu.links  %}
+
+<div class="footer__menu" {{ block.shopify_attributes }}>
+  <h3 class="footer__menu-heading">{{ links.title }}</h3>
+  <ul class="footer__menu-list" role="list">
+    {%- for link in links -%}
+      <li>
+        <a
+          class="footer__menu-link"
+          href="{{ link.url }}"
+          {% if link.current %}
+            aria-current="page"
+          {% endif %}
+        >
+          {{- link.title -}}
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Footer menu",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    }
+  ]
+}
+{% endschema %}
