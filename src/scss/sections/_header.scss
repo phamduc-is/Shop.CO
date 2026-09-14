@@ -1,0 +1,213 @@
+@use '../abstracts' as *;
+
+.header__inner {
+  --header-gap: var(--space-40);
+  --header-nav-gap: var(--space-24);
+  --header-icon-size: 24px;
+
+  display: flex;
+  align-items: center;
+  gap: var(--header-gap);
+
+  padding-block: var(--space-24);
+
+  font-size: var(--text-md);
+  color: var(--color-text);
+}
+
+// --- Logo -------------------------------------------------------------------
+
+.header__logo-link {
+  width: 160px;
+  height: 22px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  block-size: auto;
+  max-inline-size: 100%;
+}
+
+.logo__fallback {
+  @include heading(var(--text-logo), var(--line-height-tight));
+}
+
+// --- Nav --------------------------------------------------------------------
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--header-nav-gap);
+
+  // Menu giữ nguyên bề rộng nội dung, phần dư nhường hết cho ô search.
+  flex-shrink: 0;
+}
+
+.header__nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.header__nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  color: var(--color-text);
+  white-space: nowrap;
+
+  transition: opacity var(--transition-fast);
+}
+
+.header__nav-link:hover {
+  opacity: 0.6;
+}
+
+// --- Dropdown ---------------------------------------------------------------
+
+.header__dropdown {
+  position: relative;
+}
+
+.header__dropdown-toggle {
+  list-style: none;
+  cursor: pointer;
+}
+
+// Ẩn tam giác mặc định của <summary> trên Safari.
+.header__dropdown-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.header__dropdown-toggle svg {
+  inline-size: 16px;
+  block-size: 16px;
+  transition: rotate var(--transition-fast);
+}
+
+.header__dropdown[open] .header__dropdown-toggle svg {
+  rotate: 180deg;
+}
+
+.header__dropdown-menu {
+  position: absolute;
+  inset-block-start: calc(100% + var(--space-12));
+  inset-inline-start: 0;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+
+  min-inline-size: 180px;
+  padding: var(--space-16);
+
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.header__dropdown-link {
+  font-size: var(--text-md);
+  color: var(--color-text);
+  white-space: nowrap;
+  transition: opacity var(--transition-fast);
+}
+
+.header__dropdown-link:hover,
+.header__dropdown-link[aria-current='page'] {
+  opacity: 0.6;
+}
+
+// --- Search -----------------------------------------------------------------
+
+.header__search {
+  // Ô search nuốt toàn bộ khoảng trống còn lại giữa nav và actions.
+  flex: 1 1 auto;
+  min-inline-size: 0;
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+
+  block-size: 48px;
+  padding-inline: var(--space-16);
+
+  background-color: var(--color-surface);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-subtle);
+}
+
+.header__search svg {
+  flex-shrink: 0;
+  inline-size: var(--header-icon-size);
+  block-size: var(--header-icon-size);
+}
+
+.header__search-input {
+  inline-size: 100%;
+  min-inline-size: 0;
+  padding: 0;
+
+  font-size: var(--text-md);
+  line-height: var(--line-height-body);
+  color: var(--color-text);
+
+  background-color: transparent;
+  border: 0;
+  appearance: none;
+}
+
+.header__search-input::placeholder {
+  color: var(--color-text-subtle);
+}
+
+.header__search-input:focus {
+  outline: none;
+}
+
+// Bỏ nút ⓧ mặc định của input[type=search] trên WebKit.
+.header__search-input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+// --- Actions (cart + account) -----------------------------------------------
+
+.header__actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+}
+
+.header__action {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Hộp vuông đúng 24px cho cả 2 icon dù tỉ lệ gốc khác nhau (23×21 và 21×21).
+  inline-size: var(--header-icon-size);
+  block-size: var(--header-icon-size);
+
+  color: var(--color-text);
+  transition: opacity var(--transition-fast);
+}
+
+.header__action:hover {
+  opacity: 0.6;
+}
+
+// Ép svg lấp đầy hộp 24×24. preserveAspectRatio mặc định ('xMidYMid meet')
+// scale nội dung vừa khít theo viewBox và căn giữa nên hình KHÔNG méo —
+// nhờ đó 2 icon có cùng chiều cao thị giác.
+.header__action svg {
+  inline-size: 100%;
+  block-size: 100%;
+}

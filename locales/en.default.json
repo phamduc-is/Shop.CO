@@ -8,6 +8,12 @@
     "search": {
       "search": "Search",
       "search_for_products": "Search for products..."
+    },
+    "cart": {
+      "cart": "Cart"
+    },
+    "account": {
+      "account": "Account"
     }
   },
   "sections": {

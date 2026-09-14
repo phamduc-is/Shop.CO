@@ -1,72 +1,85 @@
-<a href="{{ routes.root_url }}" class="header__logo-link" aria-label="{{ shop.name | escape }}">
-  {%- if section.settings.logo != blank -%}
-    {{ section.settings.logo | image_url: width: 400 | image_tag: loading: 'lazy', class: 'header__logo' }}
-  {% else %}
-    <span class="header__logo logo__fallback"> Logo </span>
-  {%- endif -%}
-</a>
+<div class="header__inner">
+  <a href="{{ routes.root_url }}" class="header__logo-link" aria-label="{{ shop.name | escape }}">
+    {%- if section.settings.logo != blank -%}
+      {{ section.settings.logo | image_url: width: 400 | image_tag: loading: 'lazy', class: 'header__logo' }}
+    {% else %}
+      <span class="header__logo logo__fallback"> Logo </span>
+    {%- endif -%}
+  </a>
 
-<ul class="header__nav" role="list">
-  {%- for link in section.settings.menu.links -%}
-    <li class="header__nav-item">
-      {% if link.links.size > 0 %}
-        <details class="header__dropdown">
-          <summary class="header__nav-link header__dropdown-toggle">
+  <ul class="header__nav" role="list">
+    {%- for link in section.settings.menu.links -%}
+      <li class="header__nav-item">
+        {% if link.links.size > 0 %}
+          <details class="header__dropdown">
+            <summary class="header__nav-link header__dropdown-toggle">
+              {{ link.title }}
+              {{ 'chevron-down.svg' | inline_asset_content }}
+            </summary>
+            <ul class="header__dropdown-menu" role="list">
+              {%- for link_child in link.links -%}
+                <li class="header__dropdown-item">
+                  {% comment %} kiểm tra thuộc tính current của link đó. Shopify tự động gán current = true khi URL của link trùng với trang người dùng đang xem. {% endcomment %}
+                  <a
+                    class="header__dropdown-link"
+                    href="{{ link_child.url }}"
+                    {% if link_child.current %}
+                      aria-current="page"
+                    {% endif %}
+                  >
+                    {{ link_child.title }}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </details>
+        {%- else -%}
+          <a
+            href="{{ link.url }}"
+            class="header__nav-link"
+            {% if link.current %}
+              aria-current="page"
+            {% endif %}
+          >
             {{ link.title }}
-            {{ 'chevron-down.svg' | asset_url | inline_asset_content }}
-          </summary>
-          <ul class="header__dropdown-menu" role="list">
-            {%- for link_child in link.links -%}
-              <li class="header__dropdown-item">
-                {% comment %} kiểm tra thuộc tính current của link đó. Shopify tự động gán current = true khi URL của link trùng với trang người dùng đang xem. {% endcomment %}
-                <a
-                  class="header__dropdown-link"
-                  href="{{ link_child.url }}"
-                  {% if link_child.current %}
-                    aria-current="page"
-                  {% endif %}
-                >
-                  {{ link_child.title }}
-                </a>
-              </li>
-            {%- endfor -%}
-          </ul>
-        </details>
-      {%- else -%}
-        <a
-          href="{{ link.url }}"
-          class="header__nav-link"
-          {% if link.current %}
-            aria-current="page"
-          {% endif %}
-        >
-          {{ link.title }}
-        </a>
-      {% endif %}
-    </li>
-  {%- endfor -%}
-</ul>
+          </a>
+        {% endif %}
+      </li>
+    {%- endfor -%}
+  </ul>
 
-{% comment %} Search box {% endcomment %}
-<form action="{{ routes.search_url }}" method="get" role="search" class="header__search">
-  <label class="visually-hidden" for="header-search">
-    {{ 'general.search.search' | t }}
-  </label>
+  {% comment %} Search box {% endcomment %}
+  <form action="{{ routes.search_url }}" method="get" role="search" class="header__search">
+    <label class="visually-hidden" for="header-search">
+      {{ 'general.search.search' | t }}
+    </label>
 
-  {% comment %} {{ 'search-icon.svg' | asset_url | inline_asset_content }} {% endcomment %}
+    {{ 'search-icon.svg' | inline_asset_content }}
 
-  <input
-    type="search"
-    class="header__search-input"
-    id="header-search"
-    name="q"
-    value="{{ search.terms | escape }}"
-    placeholder="{{ 'general.search.search_for_products' | t }}"
-    autocomplete="off"
-  >
+    <input
+      type="search"
+      class="header__search-input"
+      id="header-search"
+      name="q"
+      value="{{ search.terms | escape }}"
+      placeholder="{{ 'general.search.search_for_products' | t }}"
+      autocomplete="off"
+    >
 
-  <input type="hidden" name="options[prefix]" value="last">
-</form>
+    <input type="hidden" name="options[prefix]" value="last">
+  </form>
+
+  {% comment %} Cart + Account {% endcomment %}
+  <div class="header__actions">
+    <a href="{{ routes.cart_url }}" class="header__action" aria-label="{{ 'general.cart.cart' | t }}">
+      {{ 'cart.svg' | inline_asset_content }}
+    </a>
+
+    <a href="{{ routes.account_url }}" class="header__action" aria-label="{{ 'general.account.account' | t }}">
+      {{ 'account.svg' | inline_asset_content }}
+    </a>
+  </div>
+</div>
 
 {% schema %}
 {
