@@ -8,6 +8,19 @@
         }
       }
     },
+    "brands": {
+      "name": "Brand Logo",
+      "settings": {
+        "color_background": {
+          "label": "Background color"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Brand Logo"
+        }
+      }
+    },
     "collection-list": {
       "name": "Collection List",
       "settings": {
@@ -265,6 +278,18 @@
         "1": {
           "name": "Description",
           "category": "Hero"
+        }
+      }
+    },
+    "logo": {
+      "name": "Brand logo",
+      "settings": {
+        "image": {
+          "label": "Logo"
+        },
+        "alt": {
+          "label": "Brand name",
+          "info": "Used as the image alt text. Leave blank to use the image's own alt text."
         }
       }
     },

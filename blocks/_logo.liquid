@@ -1,0 +1,42 @@
+
+{% liquid
+  assign image = block.settings.image
+  assign alt = block.settings.alt | default: image.alt | escape
+
+  # Chưa nhập tên thì dùng chuỗi mặc định, tránh `| t` áp nhầm lên tên thật
+  assign fallback_text = block.settings.alt
+  if fallback_text == blank
+    assign fallback_text = 'sections.brands.logo_fallback' | t
+  endif
+%}
+
+<li class="brands__item" {{ block.shopify_attributes }}>
+  {% if image != blank %}
+    {{ image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'brands__logo', alt: alt }}
+  {% else %}
+    {% # Chưa chọn ảnh → hiện tên thương hiệu dạng chữ, ô không bao giờ trống %}
+    <span class="brands__fallback">
+      {{- fallback_text -}}
+    </span>
+  {% endif %}
+</li>
+
+{% schema %}
+{
+  "name": "t:blocks.logo.name",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:blocks.logo.settings.image.label"
+    },
+    {
+      "type": "text",
+      "id": "alt",
+      "label": "t:blocks.logo.settings.alt.label",
+      "info": "t:blocks.logo.settings.alt.info"
+    }
+  ]
+}
+{% endschema %}

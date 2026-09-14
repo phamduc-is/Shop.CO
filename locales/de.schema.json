@@ -8,6 +8,19 @@
         }
       }
     },
+    "brands": {
+      "name": "Markenlogos",
+      "settings": {
+        "color_background": {
+          "label": "Hintergrundfarbe"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Markenlogos"
+        }
+      }
+    },
     "collection-list": {
       "name": "Kategorieliste",
       "settings": {
@@ -265,6 +278,18 @@
         "1": {
           "name": "Beschreibung",
           "category": "Hero"
+        }
+      }
+    },
+    "logo": {
+      "name": "Markenlogo",
+      "settings": {
+        "image": {
+          "label": "Logo"
+        },
+        "alt": {
+          "label": "Markenname",
+          "info": "Wird als Alt-Text des Bildes verwendet. Leer lassen, um den vorhandenen Alt-Text des Bildes zu nutzen."
         }
       }
     },

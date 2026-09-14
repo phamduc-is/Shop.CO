@@ -8,6 +8,19 @@
         }
       }
     },
+    "brands": {
+      "name": "Logo thương hiệu",
+      "settings": {
+        "color_background": {
+          "label": "Màu nền"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Logo thương hiệu"
+        }
+      }
+    },
     "collection-list": {
       "name": "Danh sách collection",
       "settings": {
@@ -265,6 +278,18 @@
         "1": {
           "name": "Mô tả",
           "category": "Hero"
+        }
+      }
+    },
+    "logo": {
+      "name": "Logo thương hiệu",
+      "settings": {
+        "image": {
+          "label": "Logo"
+        },
+        "alt": {
+          "label": "Tên thương hiệu",
+          "info": "Dùng làm alt text cho ảnh. Để trống sẽ lấy alt text sẵn có của ảnh."
         }
       }
     },

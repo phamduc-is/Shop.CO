@@ -1,0 +1,32 @@
+<div class="brands container" style="background:{{ section.settings.color_background }};">
+  <ul class="brands__list" role="list">
+    {% content_for 'blocks' %}
+  </ul>
+</div>
+{% schema %}
+{
+  "name": "t:sections.brands.name",
+  "tag": "section",
+  "settings": [
+    { "type": "color_background", "id": "color_background", "label": "t:sections.brands.settings.color_background.label", "default": "#000000" }
+  ],
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "type": "_logo"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.brands.presets.1.name",
+      "blocks": [
+        { "type": "_logo" },
+        { "type": "_logo" },
+        { "type": "_logo" },
+        { "type": "_logo" },
+        { "type": "_logo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -8,6 +8,19 @@
         }
       }
     },
+    "brands": {
+      "name": "Logos de marques",
+      "settings": {
+        "color_background": {
+          "label": "Couleur d'arrière-plan"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Logos de marques"
+        }
+      }
+    },
     "collection-list": {
       "name": "Liste de collections",
       "settings": {
@@ -265,6 +278,18 @@
         "1": {
           "name": "Description",
           "category": "Hero"
+        }
+      }
+    },
+    "logo": {
+      "name": "Logo de marque",
+      "settings": {
+        "image": {
+          "label": "Logo"
+        },
+        "alt": {
+          "label": "Nom de la marque",
+          "info": "Utilisé comme texte alternatif de l'image. Laissez vide pour utiliser le texte alternatif de l'image."
         }
       }
     },

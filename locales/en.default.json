@@ -5,5 +5,10 @@
       "previous": "Previous",
       "next": "Next"
     }
+  },
+  "sections": {
+    "brands": {
+      "logo_fallback": "Brand name"
+    }
   }
 }
