@@ -1,0 +1,293 @@
+@use '../abstracts' as *;
+
+// ============================================================================
+// Footer — DESKTOP ONLY (artboard Figma 1440).
+//
+// Số đo dưới đây suy ra từ screenshot design, KHÔNG phải đọc trực tiếp từ
+// Figma API (tài khoản đang bị rate limit 429). Quy đổi theo giả định hộp
+// newsletter rộng đúng 1240px = --container-max, cho hệ số 0.844 px-ảnh/px-thật.
+// Sai số ước tính ±2px; số nào lệch khỏi thang 4px đã được nắn về token gần nhất.
+// Có quota Figma trở lại thì đối chiếu node Homepage 1440 (#20:2) và sửa tại đây.
+//
+// Chưa có breakpoint mobile — artboard 390 làm sau.
+// ============================================================================
+
+.footer {
+  --footer-brand-width: 248px;
+  --footer-form-width: 348px;
+  --footer-social-size: 28px;
+
+  background-color: var(--color-surface);
+}
+
+// --- Newsletter -------------------------------------------------------------
+
+// Hộp đen nằm vắt qua ranh giới trắng/xám: nửa trên đè lên nền trắng của trang,
+// nửa dưới nằm trên nền xám của footer. Dùng gradient hard-stop 50% thay vì
+// margin âm — không cần biết trước chiều cao hộp.
+//
+// Negative margin-inline kéo dải gradient ra hết bề ngang viewport, vì .footer
+// đã là .container (padding-inline = --spacing-gutter); padding bù lại đúng
+// bằng đó nên hộp bên trong vẫn rộng 1240px như design.
+.footer__newsletter {
+  margin-inline: calc(-1 * var(--spacing-gutter));
+  padding-inline: var(--spacing-gutter);
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-background) 50%,
+    var(--color-surface) 50%
+  );
+}
+
+.footer__newsletter-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-40);
+
+  padding: var(--space-32) var(--space-64);
+
+  background-color: var(--color-black);
+  border-radius: var(--radius-lg);
+  color: var(--color-white);
+}
+
+.footer__newsletter-heading {
+  @include heading(var(--text-h2), var(--line-height-heading));
+
+  // Ép xuống đúng 2 dòng: "STAY UPTO DATE ABOUT" / "OUR LATEST OFFERS".
+  max-inline-size: 560px;
+  margin: 0;
+}
+
+.footer__newsletter-form {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-14);
+
+  inline-size: var(--footer-form-width);
+}
+
+.footer__newsletter-field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+
+  block-size: 48px;
+  padding-inline: var(--space-16);
+
+  background-color: var(--color-white);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-subtle);
+}
+
+.footer__newsletter-field svg {
+  flex-shrink: 0;
+  inline-size: var(--space-24);
+  block-size: var(--space-24);
+}
+
+.footer__newsletter-input {
+  inline-size: 100%;
+  min-inline-size: 0;
+  padding: 0;
+
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--line-height-body);
+  color: var(--color-text);
+
+  background-color: transparent;
+  border: 0;
+  appearance: none;
+}
+
+.footer__newsletter-input::placeholder {
+  color: var(--color-text-subtle);
+}
+
+.footer__newsletter-input:focus {
+  outline: none;
+}
+
+.footer__newsletter-submit {
+  block-size: 48px;
+  padding-inline: var(--space-16);
+
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-body);
+  color: var(--color-text);
+
+  background-color: var(--color-white);
+  border: 0;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+
+  transition: opacity var(--transition-fast);
+}
+
+.footer__newsletter-submit:hover {
+  opacity: 0.8;
+}
+
+.footer__newsletter-note {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-white);
+}
+
+.footer__newsletter-note--error {
+  color: var(--color-star);
+}
+
+// --- Khối cột: brand + 4 menu -----------------------------------------------
+
+// space-between thay vì grid cột đều: design để khoảng cách giữa các cột lệch
+// nhau (220 / 248 / 260px) vì mỗi cột rộng theo nội dung của nó.
+.footer__top {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-40);
+
+  padding-block-start: var(--space-48);
+}
+
+.footer__brand {
+  flex: 0 0 var(--footer-brand-width);
+}
+
+.footer__logo-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text);
+}
+
+.footer__logo {
+  block-size: auto;
+  max-inline-size: 100%;
+}
+
+// Wordmark chữ khi merchant chưa upload logo — dùng chung class với header.
+.footer__logo-link .logo__fallback {
+  @include heading(var(--text-logo), var(--line-height-tight));
+}
+
+.footer__desc {
+  margin-block: var(--space-24) var(--space-32);
+
+  font-size: var(--text-base);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+}
+
+// --- Social -----------------------------------------------------------------
+
+.footer__social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__social-link {
+  display: block;
+  inline-size: var(--footer-social-size);
+  block-size: var(--footer-social-size);
+
+  transition: opacity var(--transition-fast);
+}
+
+.footer__social-link:hover {
+  opacity: 0.6;
+}
+
+// SVG đã kèm sẵn hình tròn + viền, chỉ cần ép vừa hộp 28×28.
+.footer__social-link svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+// --- Cột menu ---------------------------------------------------------------
+
+.footer__menu-heading {
+  margin: 0 0 var(--space-24);
+
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.footer__menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__menu-link {
+  font-size: var(--text-md);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+
+  transition: color var(--transition-fast);
+}
+
+.footer__menu-link:hover,
+.footer__menu-link[aria-current='page'] {
+  color: var(--color-text);
+}
+
+// --- Thanh dưới -------------------------------------------------------------
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+
+  margin-block-start: var(--space-48);
+  padding-block: var(--space-24) var(--space-64);
+
+  border-block-start: 1px solid var(--color-border);
+}
+
+.footer__copyright {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+}
+
+.footer__payments {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__payment {
+  display: flex;
+}
+
+// Giữ nguyên kích thước gốc của file SVG (47×31) — badge đã kèm nền trắng và viền.
+.footer__payment svg {
+  display: block;
+}

@@ -1,88 +1,124 @@
-{% if section.settings.show_newsletter %}
-  <div class="footer_newsletter">
-    <h2>{{ section.settings.newsletter_heading }}</h2>
-    {% comment %} Tam thoi de trong {% endcomment %}
+
+
+{%- if section.settings.show_newsletter -%}
+  <div class="footer__newsletter">
+    <div class="footer__newsletter-box">
+      <h2 class="footer__newsletter-heading">{{ section.settings.newsletter_heading }}</h2>
+
+      {%- form 'customer', class: 'footer__newsletter-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+
+        <div class="footer__newsletter-field">
+          {{ 'mail-icon.svg' | inline_asset_content }}
+          <input
+            type="email"
+            name="contact[email]"
+            class="footer__newsletter-input"
+            value="{{ form.email }}"
+            placeholder="{{ 'sections.footer.newsletter.placeholder' | t }}"
+            aria-label="{{ 'sections.footer.newsletter.placeholder' | t }}"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <button type="submit" class="footer__newsletter-submit">
+          {{- 'sections.footer.newsletter.submit' | t -}}
+        </button>
+
+        {%- if form.posted_successfully? -%}
+          <p class="footer__newsletter-note">{{ 'sections.footer.newsletter.success' | t }}</p>
+        {%- elsif form.errors -%}
+          <p class="footer__newsletter-note footer__newsletter-note--error">
+            {{- form.errors.messages['email'] -}}
+          </p>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
   </div>
-{% endif %}
-<div class="footer__top footer-grid">
-  <div class="footer__brands">
-    {{ section.settings.logo | image_url: width: 400 | image_tag: loading: 'lazy', class: 'footer__logo' }}
-    <p>{{ section.settings.desc }}</p>
-    <ul>
-      <li>
-        <a href="{{ section.settings.social_twitter_url  }}"> </a>
-      </li>
-      <li>
-        <a href="{{ section.settings.social_facebook_url }}">  </a>
-      </li>
-      <li>
-        <a href="{{ section.settings.social_instagram_url }}">  </a>
-      </li>
-      <li>
-        <a href="{{ section.settings.social_github_url }}">  </a>
-      </li>
+{%- endif -%}
+
+<div class="footer__top">
+  <div class="footer__brand">
+    <a href="{{ routes.root_url }}" class="footer__logo-link">
+      {%- if section.settings.logo != blank -%}
+        {{
+          section.settings.logo
+          | image_url: width: 400
+          | image_tag: loading: 'lazy', class: 'footer__logo', alt: shop.name
+        }}
+      {%- else -%}
+        {% # Chưa chọn ảnh → wordmark dạng chữ, ô không bao giờ trống %}
+        <span class="footer__logo logo__fallback">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    {%- if section.settings.desc != blank -%}
+      <p class="footer__desc">{{ section.settings.desc }}</p>
+    {%- endif -%}
+
+    {% content_for 'block', id: 'social-list', type: '_social-list' %}
+  </div>
+
+  {%- content_for 'blocks' -%}
+</div>
+
+<div class="footer__bottom">
+  <p class="footer__copyright">{{ section.settings.copyright }}</p>
+
+  {%- if section.settings.show_payment_icons -%}
+    {% liquid
+      assign payment_methods = 'visa,mastercard,paypal,applepay,googlepay' | split: ','
+    %}
+    <ul class="footer__payments" role="list">
+      {%- for method in payment_methods -%}
+        {%- assign payment_icon = 'payment-' | append: method | append: '.svg' -%}
+        <li class="footer__payment">{{ payment_icon | inline_asset_content }}</li>
+      {%- endfor -%}
     </ul>
-  </div>
+  {%- endif -%}
 </div>
 
 {% schema %}
 {
-  "name": "Footer",
+  "name": "t:sections.footer.name",
   "tag": "section",
-  "class": "container",
+  "class": "footer container",
+  "enabled_on": { "groups": ["footer"] },
   "settings": [
     {
       "type": "checkbox",
       "id": "show_newsletter",
-      "label": "Show newsletter",
+      "label": "t:sections.footer.settings.show_newsletter.label",
       "default": true
     },
     {
       "type": "inline_richtext",
       "id": "newsletter_heading",
-      "label": "Heading",
+      "label": "t:sections.footer.settings.newsletter_heading.label",
       "default": "Stay upto date about our latest offers"
     },
     {
       "type": "image_picker",
       "id": "logo",
-      "label": "Logo"
+      "label": "t:sections.footer.settings.logo.label"
     },
     {
       "type": "textarea",
       "id": "desc",
-      "label": "Description"
-    },
-    {
-      "type": "url",
-      "id": "social_twitter_url",
-      "label": "Social twitter url"
-    },
-    {
-      "type": "url",
-      "id": "social_facebook_url",
-      "label": "Social facebook url"
-    },
-    {
-      "type": "url",
-      "id": "social_instagram_url",
-      "label": "Social instagram url"
-    },
-    {
-      "type": "url",
-      "id": "social_github_url",
-      "label": "Social github url"
+      "label": "t:sections.footer.settings.desc.label",
+      "default": "We have clothes that suits your style and which you're proud to wear. From women to men."
     },
     {
       "type": "checkbox",
       "id": "show_payment_icons",
-      "label": "Show payment icons",
+      "label": "t:sections.footer.settings.show_payment_icons.label",
       "default": true
     },
     {
       "type": "text",
       "id": "copyright",
-      "label": "Copyright content",
+      "label": "t:sections.footer.settings.copyright.label",
       "default": "Shop.co © 2000-2023, All Rights Reserved"
     }
   ],
@@ -90,12 +126,23 @@
   "blocks": [{ "type": "_footer-menu" }],
   "presets": [
     {
-      "name": "Footer1",
+      "name": "t:sections.footer.presets.1.name",
       "blocks": [
         { "type": "_footer-menu" },
         { "type": "_footer-menu" },
         { "type": "_footer-menu" },
-        { "type": "_footer-menu" }
+        { "type": "_footer-menu" },
+        {
+          "type": "_social-list",
+          "id": "social-list",
+          "static": true,
+          "blocks": [
+            { "type": "_social-icon", "settings": { "platform": "twitter" } },
+            { "type": "_social-icon", "settings": { "platform": "facebook" } },
+            { "type": "_social-icon", "settings": { "platform": "instagram" } },
+            { "type": "_social-icon", "settings": { "platform": "github" } }
+          ]
+        }
       ]
     }
   ]

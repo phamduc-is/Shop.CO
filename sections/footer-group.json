@@ -1,6 +1,28 @@
 {
   "name": "Footer",
   "type": "footer",
-  "sections": {},
-  "order": []
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "menu-company": { "type": "_footer-menu", "settings": { "heading": "Company" } },
+        "menu-help": { "type": "_footer-menu", "settings": { "heading": "Help" } },
+        "menu-faq": { "type": "_footer-menu", "settings": { "heading": "FAQ" } },
+        "menu-resources": { "type": "_footer-menu", "settings": { "heading": "Resources" } },
+        "social-list": {
+          "type": "_social-list",
+          "static": true,
+          "blocks": {
+            "social-twitter": { "type": "_social-icon", "settings": { "platform": "twitter" } },
+            "social-facebook": { "type": "_social-icon", "settings": { "platform": "facebook" } },
+            "social-instagram": { "type": "_social-icon", "settings": { "platform": "instagram" } },
+            "social-github": { "type": "_social-icon", "settings": { "platform": "github" } }
+          },
+          "block_order": ["social-twitter", "social-facebook", "social-instagram", "social-github"]
+        }
+      },
+      "block_order": ["menu-company", "menu-help", "menu-faq", "menu-resources"]
+    }
+  },
+  "order": ["footer"]
 }

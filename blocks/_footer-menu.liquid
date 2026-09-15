@@ -1,9 +1,23 @@
-{% assign links = block.settings.menu.links  %}
+{% doc %}
+  Một cột link trong footer. Tiêu đề lấy từ setting `heading`, bỏ trống thì rơi
+  về tên của link list đã chọn.
+
+  @example
+  {% content_for 'blocks' %}
+{% enddoc %}
+
+{% liquid
+  assign menu = block.settings.menu
+  assign heading = block.settings.heading | default: menu.title
+%}
 
 <div class="footer__menu" {{ block.shopify_attributes }}>
-  <h3 class="footer__menu-heading">{{ links.title }}</h3>
+  {%- if heading != blank -%}
+    <h3 class="footer__menu-heading">{{ heading }}</h3>
+  {%- endif -%}
+
   <ul class="footer__menu-list" role="list">
-    {%- for link in links -%}
+    {%- for link in menu.links -%}
       <li>
         <a
           class="footer__menu-link"
@@ -21,12 +35,19 @@
 
 {% schema %}
 {
-  "name": "Footer menu",
+  "name": "t:blocks.footer-menu.name",
+  "tag": null,
   "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:blocks.footer-menu.settings.heading.label",
+      "info": "t:blocks.footer-menu.settings.heading.info"
+    },
     {
       "type": "link_list",
       "id": "menu",
-      "label": "Menu"
+      "label": "t:blocks.footer-menu.settings.menu.label"
     }
   ]
 }

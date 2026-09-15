@@ -19,6 +19,16 @@
   "sections": {
     "brands": {
       "logo_fallback": "Brand name"
+    },
+    "footer": {
+      "newsletter": {
+        "placeholder": "Enter your email address",
+        "submit": "Subscribe to Newsletter",
+        "success": "Thanks for subscribing."
+      },
+      "social": {
+        "follow_on": "Follow us on {{ platform }}"
+      }
     }
   }
 }

@@ -1,0 +1,54 @@
+{% doc %}
+  Một icon social trong footer. Chỉ dùng bên trong block `_social-list`.
+
+  SVG trong assets/ đã kèm sẵn hình tròn và viền, nên block này không vẽ khung.
+
+  @example
+  {% content_for 'blocks' %}
+{% enddoc %}
+
+{% liquid
+  assign url = block.settings.social_url
+  assign platform = block.settings.platform
+  assign icon = 'social-' | append: platform | append: '.svg'
+  assign label = platform | capitalize
+%}
+
+{% # Bỏ trống link thì ẩn ở storefront, nhưng vẫn hiện trong theme editor để còn chọn được block %}
+{%- if url != blank or request.design_mode -%}
+  <li class="footer__social-item" {{ block.shopify_attributes }}>
+    <a
+      class="footer__social-link"
+      href="{{ url | default: '#' }}"
+      aria-label="{{ 'sections.footer.social.follow_on' | t: platform: label }}"
+    >
+      {{ icon | inline_asset_content }}
+    </a>
+  </li>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:blocks.social-icon.name",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "platform",
+      "label": "t:blocks.social-icon.settings.platform.label",
+      "options": [
+        { "value": "twitter", "label": "Twitter" },
+        { "value": "facebook", "label": "Facebook" },
+        { "value": "instagram", "label": "Instagram" },
+        { "value": "github", "label": "Github" }
+      ],
+      "default": "twitter"
+    },
+    {
+      "type": "url",
+      "id": "social_url",
+      "label": "t:blocks.social-icon.settings.social_url.label"
+    }
+  ]
+}
+{% endschema %}

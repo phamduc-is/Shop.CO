@@ -67,6 +67,34 @@
         }
       }
     },
+    "footer": {
+      "name": "Fußzeile",
+      "settings": {
+        "show_newsletter": {
+          "label": "Newsletter anzeigen"
+        },
+        "newsletter_heading": {
+          "label": "Newsletter-Überschrift"
+        },
+        "logo": {
+          "label": "Logo"
+        },
+        "desc": {
+          "label": "Beschreibung"
+        },
+        "show_payment_icons": {
+          "label": "Zahlungssymbole anzeigen"
+        },
+        "copyright": {
+          "label": "Copyright-Text"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Fußzeile"
+        }
+      }
+    },
     "hero": {
       "name": "Hero",
       "settings": {
@@ -91,103 +119,6 @@
           "name": "Hero 2"
         }
       }
-    },
-    "pd-default": {
-      "name": "PD default attr",
-      "settings": {
-        "header__1": {
-          "content": "Inhalt"
-        },
-        "label": {
-          "label": "Badge-Beschriftung"
-        },
-        "heading": {
-          "label": "Überschrift"
-        },
-        "body": {
-          "label": "Textkörper"
-        },
-        "accent": {
-          "label": "Akzent"
-        }
-      },
-      "blocks": {
-        "note": {
-          "name": "Notiz",
-          "settings": {
-            "title": {
-              "label": "Titel"
-            },
-            "text": {
-              "label": "Text"
-            }
-          }
-        }
-      }
-    },
-    "pd-local": {
-      "name": "PD local",
-      "settings": {
-        "header__1": {
-          "content": "Inhalt"
-        },
-        "heading": {
-          "label": "Überschrift"
-        }
-      },
-      "blocks": {
-        "card": {
-          "name": "Karten-Block",
-          "settings": {
-            "title": {
-              "label": "Titel"
-            },
-            "text": {
-              "label": "Text"
-            },
-            "image": {
-              "label": "Bild",
-              "info": "Leer lassen, um einen Platzhalter zu verwenden."
-            }
-          }
-        },
-        "text": {
-          "name": "Text-Block",
-          "settings": {
-            "title": {
-              "label": "Titel"
-            },
-            "body": {
-              "label": "Textkörper"
-            }
-          }
-        }
-      },
-      "presets": {
-        "1": {
-          "name": "PD local",
-          "category": "Banner"
-        },
-        "2": {
-          "name": "PD local 2"
-        }
-      }
-    },
-    "pd-theme": {
-      "name": "PD theme block",
-      "settings": {
-        "header__1": {
-          "content": "Inhalt"
-        },
-        "heading": {
-          "label": "Überschrift"
-        }
-      },
-      "presets": {
-        "1": {
-          "name": "PD theme block 2"
-        }
-      }
     }
   },
   "blocks": {
@@ -209,6 +140,18 @@
       "presets": {
         "1": {
           "name": "Kategorie-Karte"
+        }
+      }
+    },
+    "footer-menu": {
+      "name": "Fußzeilenmenü",
+      "settings": {
+        "heading": {
+          "label": "Spaltentitel",
+          "info": "Leer lassen, um den Namen des gewählten Menüs zu verwenden."
+        },
+        "menu": {
+          "label": "Menü"
         }
       }
     },
@@ -293,46 +236,19 @@
         }
       }
     },
-    "pd-card": {
-      "name": "PD Card",
+    "social-icon": {
+      "name": "Social-Media-Symbol",
       "settings": {
-        "title": {
-          "label": "Titel"
+        "platform": {
+          "label": "Plattform"
         },
-        "text": {
-          "label": "Text"
-        },
-        "image": {
-          "label": "Bild",
-          "info": "Leer lassen, um einen Platzhalter zu verwenden."
-        },
-        "hide_media": {
-          "label": "Bild ausblenden",
-          "info": "Aktivieren, wenn die Karte als Container für untergeordnete Karten dient."
-        }
-      },
-      "presets": {
-        "1": {
-          "name": "PD Card 2"
+        "social_url": {
+          "label": "Link"
         }
       }
     },
-    "pd-slot": {
-      "name": "PD Slot",
-      "settings": {
-        "label": {
-          "label": "Beschriftung"
-        },
-        "note": {
-          "label": "Notiz"
-        }
-      },
-      "presets": {
-        "1": {
-          "name": "PD Slot",
-          "category": "PD sandbox"
-        }
-      }
+    "social-list": {
+      "name": "Social-Media-Links"
     }
   }
 }

@@ -67,6 +67,34 @@
         }
       }
     },
+    "footer": {
+      "name": "Pied de page",
+      "settings": {
+        "show_newsletter": {
+          "label": "Afficher l’infolettre"
+        },
+        "newsletter_heading": {
+          "label": "Titre de l’infolettre"
+        },
+        "logo": {
+          "label": "Logo"
+        },
+        "desc": {
+          "label": "Description"
+        },
+        "show_payment_icons": {
+          "label": "Afficher les icônes de paiement"
+        },
+        "copyright": {
+          "label": "Texte de copyright"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Pied de page"
+        }
+      }
+    },
     "hero": {
       "name": "Hero",
       "settings": {
@@ -91,103 +119,6 @@
           "name": "Hero 2"
         }
       }
-    },
-    "pd-default": {
-      "name": "PD default attr",
-      "settings": {
-        "header__1": {
-          "content": "Contenu"
-        },
-        "label": {
-          "label": "Libellé du badge"
-        },
-        "heading": {
-          "label": "Titre"
-        },
-        "body": {
-          "label": "Corps"
-        },
-        "accent": {
-          "label": "Accent"
-        }
-      },
-      "blocks": {
-        "note": {
-          "name": "Note",
-          "settings": {
-            "title": {
-              "label": "Titre"
-            },
-            "text": {
-              "label": "Texte"
-            }
-          }
-        }
-      }
-    },
-    "pd-local": {
-      "name": "PD local",
-      "settings": {
-        "header__1": {
-          "content": "Contenu"
-        },
-        "heading": {
-          "label": "Titre"
-        }
-      },
-      "blocks": {
-        "card": {
-          "name": "Bloc carte",
-          "settings": {
-            "title": {
-              "label": "Titre"
-            },
-            "text": {
-              "label": "Texte"
-            },
-            "image": {
-              "label": "Image",
-              "info": "Laissez vide pour utiliser une image de remplacement."
-            }
-          }
-        },
-        "text": {
-          "name": "Bloc texte",
-          "settings": {
-            "title": {
-              "label": "Titre"
-            },
-            "body": {
-              "label": "Corps"
-            }
-          }
-        }
-      },
-      "presets": {
-        "1": {
-          "name": "PD local",
-          "category": "Bannières"
-        },
-        "2": {
-          "name": "PD local 2"
-        }
-      }
-    },
-    "pd-theme": {
-      "name": "PD theme block",
-      "settings": {
-        "header__1": {
-          "content": "Contenu"
-        },
-        "heading": {
-          "label": "Titre"
-        }
-      },
-      "presets": {
-        "1": {
-          "name": "PD theme block 2"
-        }
-      }
     }
   },
   "blocks": {
@@ -209,6 +140,18 @@
       "presets": {
         "1": {
           "name": "Carte de collection"
+        }
+      }
+    },
+    "footer-menu": {
+      "name": "Menu du pied de page",
+      "settings": {
+        "heading": {
+          "label": "Titre de la colonne",
+          "info": "Laisser vide pour utiliser le nom du menu sélectionné."
+        },
+        "menu": {
+          "label": "Menu"
         }
       }
     },
@@ -293,46 +236,19 @@
         }
       }
     },
-    "pd-card": {
-      "name": "PD Card",
+    "social-icon": {
+      "name": "Icône sociale",
       "settings": {
-        "title": {
-          "label": "Titre"
+        "platform": {
+          "label": "Plateforme"
         },
-        "text": {
-          "label": "Texte"
-        },
-        "image": {
-          "label": "Image",
-          "info": "Laissez vide pour utiliser une image de remplacement."
-        },
-        "hide_media": {
-          "label": "Masquer l'image",
-          "info": "Activez lorsque la carte sert de conteneur pour des cartes enfants."
-        }
-      },
-      "presets": {
-        "1": {
-          "name": "PD Card 2"
+        "social_url": {
+          "label": "Lien"
         }
       }
     },
-    "pd-slot": {
-      "name": "PD Slot",
-      "settings": {
-        "label": {
-          "label": "Libellé"
-        },
-        "note": {
-          "label": "Note"
-        }
-      },
-      "presets": {
-        "1": {
-          "name": "PD Slot",
-          "category": "PD sandbox"
-        }
-      }
+    "social-list": {
+      "name": "Liens sociaux"
     }
   }
 }

@@ -67,6 +67,34 @@
         }
       }
     },
+    "footer": {
+      "name": "Chân trang",
+      "settings": {
+        "show_newsletter": {
+          "label": "Hiện khối đăng ký"
+        },
+        "newsletter_heading": {
+          "label": "Tiêu đề đăng ký"
+        },
+        "logo": {
+          "label": "Logo"
+        },
+        "desc": {
+          "label": "Mô tả"
+        },
+        "show_payment_icons": {
+          "label": "Hiện icon thanh toán"
+        },
+        "copyright": {
+          "label": "Nội dung bản quyền"
+        }
+      },
+      "presets": {
+        "1": {
+          "name": "Chân trang"
+        }
+      }
+    },
     "hero": {
       "name": "Hero",
       "settings": {
@@ -91,103 +119,6 @@
           "name": "Hero 2"
         }
       }
-    },
-    "pd-default": {
-      "name": "PD default attr",
-      "settings": {
-        "header__1": {
-          "content": "Nội dung"
-        },
-        "label": {
-          "label": "Nhãn badge"
-        },
-        "heading": {
-          "label": "Tiêu đề"
-        },
-        "body": {
-          "label": "Nội dung chính"
-        },
-        "accent": {
-          "label": "Màu nhấn"
-        }
-      },
-      "blocks": {
-        "note": {
-          "name": "Ghi chú",
-          "settings": {
-            "title": {
-              "label": "Tiêu đề"
-            },
-            "text": {
-              "label": "Văn bản"
-            }
-          }
-        }
-      }
-    },
-    "pd-local": {
-      "name": "PD local",
-      "settings": {
-        "header__1": {
-          "content": "Nội dung"
-        },
-        "heading": {
-          "label": "Tiêu đề"
-        }
-      },
-      "blocks": {
-        "card": {
-          "name": "Block card",
-          "settings": {
-            "title": {
-              "label": "Tiêu đề"
-            },
-            "text": {
-              "label": "Văn bản"
-            },
-            "image": {
-              "label": "Ảnh",
-              "info": "Bỏ trống sẽ dùng placeholder."
-            }
-          }
-        },
-        "text": {
-          "name": "Block text",
-          "settings": {
-            "title": {
-              "label": "Tiêu đề"
-            },
-            "body": {
-              "label": "Nội dung chính"
-            }
-          }
-        }
-      },
-      "presets": {
-        "1": {
-          "name": "PD local",
-          "category": "Banner"
-        },
-        "2": {
-          "name": "PD local 2"
-        }
-      }
-    },
-    "pd-theme": {
-      "name": "PD theme block",
-      "settings": {
-        "header__1": {
-          "content": "Nội dung"
-        },
-        "heading": {
-          "label": "Tiêu đề"
-        }
-      },
-      "presets": {
-        "1": {
-          "name": "PD theme block 2"
-        }
-      }
     }
   },
   "blocks": {
@@ -209,6 +140,18 @@
       "presets": {
         "1": {
           "name": "Thẻ collection"
+        }
+      }
+    },
+    "footer-menu": {
+      "name": "Cột menu chân trang",
+      "settings": {
+        "heading": {
+          "label": "Tiêu đề cột",
+          "info": "Bỏ trống để dùng tên của menu đã chọn."
+        },
+        "menu": {
+          "label": "Menu"
         }
       }
     },
@@ -293,46 +236,19 @@
         }
       }
     },
-    "pd-card": {
-      "name": "PD Card",
+    "social-icon": {
+      "name": "Icon mạng xã hội",
       "settings": {
-        "title": {
-          "label": "Tiêu đề"
+        "platform": {
+          "label": "Nền tảng"
         },
-        "text": {
-          "label": "Văn bản"
-        },
-        "image": {
-          "label": "Ảnh",
-          "info": "Bỏ trống sẽ dùng placeholder."
-        },
-        "hide_media": {
-          "label": "Ẩn ảnh",
-          "info": "Bật khi card dùng làm khung chứa card con."
-        }
-      },
-      "presets": {
-        "1": {
-          "name": "PD Card 2"
+        "social_url": {
+          "label": "Đường dẫn"
         }
       }
     },
-    "pd-slot": {
-      "name": "PD Slot",
-      "settings": {
-        "label": {
-          "label": "Nhãn"
-        },
-        "note": {
-          "label": "Ghi chú"
-        }
-      },
-      "presets": {
-        "1": {
-          "name": "PD Slot",
-          "category": "PD sandbox"
-        }
-      }
+    "social-list": {
+      "name": "Liên kết mạng xã hội"
     }
   }
 }

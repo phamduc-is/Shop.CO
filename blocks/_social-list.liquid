@@ -1,0 +1,23 @@
+{% doc %}
+  Nhóm icon social trong cột brand của footer. Render STATIC từ footer.liquid để
+  khoá vị trí — nếu để động, nó sẽ xếp hàng chung với 4 cột menu.
+
+  Không khai `presets`: block chỉ xuất hiện trong picker khi có presets, mà block
+  này không được merchant tự thêm. Bộ 4 icon mặc định nằm ở preset của section.
+
+  @example
+  {% content_for 'block', id: 'social-list', type: '_social-list' %}
+{% enddoc %}
+
+<ul class="footer__social" role="list" {{ block.shopify_attributes }}>
+  {% # _social-icon là con trực tiếp -> <li> nằm đúng trong <ul>, không lệch một tầng %}
+  {% content_for 'blocks' %}
+</ul>
+
+{% schema %}
+{
+  "name": "t:blocks.social-list.name",
+  "tag": null,
+  "blocks": [{ "type": "_social-icon" }]
+}
+{% endschema %}

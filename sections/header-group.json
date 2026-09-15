@@ -4,9 +4,13 @@
   "sections": {
     "announcement": {
       "type": "announcement"
+    },
+    "header": {
+      "type": "header"
     }
   },
   "order": [
-    "announcement"
+    "announcement",
+    "header"
   ]
 }
