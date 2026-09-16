@@ -1,0 +1,17 @@
+<h2>{{ product.title }}</h2>
+{%- if product.compare_at_price > product.price -%}
+  <span> {{ product.price | money }} </span>
+  <span> {{ product.compare_at_price | money }} </span>
+  {% else %}
+    <span> {{ product.price }} </span>
+{%- endif -%}
+{% assign product_rating = product.metafields.custom.ratings.value %}
+{% render 'rating-star', rating: product_rating.rating, show_value: true, scale_max: product_rating.scale_max  %}
+{{ product.description }}
+{% schema %}
+{
+  "name": "Product detail",
+  "tag": null,
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,20 @@
+<div class="main-product__grid">
+  {%- content_for 'block', id: 'product-media', type: '_product-media' -%}
+  {%- content_for 'block', id: 'product-detail', type: '_product-detail' -%}
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Product Information",
+  "tag": "section",
+  "class": "container",
+  "settings": [],
+  "blocks": [{ "type": "@app" }],
+  "presets": [
+    {
+      "name": "Product Information"
+    }
+  ]
+}
+{% endschema %}

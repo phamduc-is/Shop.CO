@@ -1,0 +1,46 @@
+{% doc %}
+  Gallery sản phẩm — thumbnail dọc bên trái + ảnh chính bên phải.
+  Static block, chỉ dùng trong sections/main-product.liquid.
+
+  @example
+  {% content_for 'block', type: '_product-media', id: 'product-media' %}
+{% enddoc %}
+
+<div class="product-gallery" {{ block.shopify_attributes }}>
+  {% comment %} <div class="product-gallery__thumbs">
+    {%- for media in product.media -%}
+      <button type="button" class="product-gallery__thumb" data-media-id= "{{ media.id }}">
+        {{ media.preview_image | image_url: width: 300 | image_tag: loading: 'lazy' }}
+      </button>
+    {%- endfor -%}
+  </div> {% endcomment %}
+  <div class="product-gallery__main">
+    {% for media in product.media %}
+      {% case media.media_type %}
+        {% when 'image' %}
+          {{ media | image_url: width: 500 | image_tag }}
+        {% when 'model' %}
+          {{ media | model_viewer_tag }}
+        {% when 'video' %}
+          {{ media | video_tag }}
+        {% when 'external_video' %}
+          {{ media | external_video_tag }}
+        {% else %}
+
+      {% endcase %}
+    {% endfor %}
+  </div>
+
+  {% if product.media.size == 0 %}
+    {{ 'product-1' | placeholder_svg_tag: 'product-gallery__image' }}
+  {% endif %}
+</div>
+
+
+{% schema %}
+{
+  "name": "Product media",
+  "tag": null,
+  "settings": []
+}
+{% endschema %}
