@@ -1,13 +1,86 @@
-<h2>{{ product.title }}</h2>
-{%- if product.compare_at_price > product.price -%}
-  <span> {{ product.price | money }} </span>
-  <span> {{ product.compare_at_price | money }} </span>
-  {% else %}
-    <span> {{ product.price }} </span>
-{%- endif -%}
-{% assign product_rating = product.metafields.custom.ratings.value %}
-{% render 'rating-star', rating: product_rating.rating, show_value: true, scale_max: product_rating.scale_max  %}
-{{ product.description }}
+{% doc %}
+  Cột thông tin bên phải của trang product — title, price, rating, description
+  và option picker (swatch tròn / chip pill).
+
+  Static block, chỉ render từ sections/main-product.liquid, cặp với _product-media.
+
+  @example
+  {% content_for 'block', type: '_product-detail', id: 'product-detail' %}
+{% enddoc %}
+
+{%- liquid
+  assign product_rating = product.metafields.custom.ratings.value
+-%}
+
+<div class="product-detail" {{ block.shopify_attributes }}>
+  <h2 class="product-detail__title">{{ product.title }}</h2>
+
+  <div class="product-detail__price">
+    {%- if product.compare_at_price > product.price -%}
+      <span class="product-detail__price-current">{{ product.price | money }}</span>
+      <span class="product-detail__price-compare">{{ product.compare_at_price | money }}</span>
+    {%- else -%}
+      <span class="product-detail__price-current">{{ product.price | money }}</span>
+    {%- endif -%}
+  </div>
+
+  {% render 'rating-star', rating: product_rating.rating, show_value: true, scale_max: product_rating.scale_max %}
+
+  <div class="product-detail__description">{{ product.description }}</div>
+
+  {%- unless product.has_only_default_variant -%}
+    {%- for option in product.options_with_values -%}
+      {%- liquid
+        assign option_name = 'option' | append: option.position
+        assign is_swatch = false
+        if option.values.first.swatch != blank
+          assign is_swatch = true
+        endif
+      -%}
+
+      <fieldset
+        class="product-detail__option product-detail__option--{% if is_swatch %}swatch{% else %}pill{% endif %}"
+        data-option-position="{{ option.position }}"
+      >
+        <legend class="product-detail__option-label">
+          {{ option.name }}
+          {%- if is_swatch -%}
+            : <span data-selected-value>{{ option.selected_value }}</span>
+          {%- endif -%}
+        </legend>
+
+        <div class="product-detail__option-values">
+          {%- for value in option.values -%}
+            <input
+              type="radio"
+              class="product-detail__option-input"
+              id="{{ block.id }}-{{ option.position }}-{{ forloop.index }}"
+              name="{{ option_name }}-{{ block.id }}"
+              value="{{ value.name | escape }}"
+              {% if value.selected %}
+                checked
+              {% endif %}
+            >
+            <label
+              class="product-detail__option-value"
+              for="{{ block.id }}-{{ option.position }}-{{ forloop.index }}"
+              {% if is_swatch %}
+                style="--swatch: {{ value.swatch.color | default: '#ccc' }}"
+              {% endif %}
+            >
+              {%- if is_swatch -%}
+                <span class="visually-hidden">{{ value.name }}</span>
+              {%- else -%}
+                {{ value.name }}
+              {%- endif -%}
+            </label>
+          {%- endfor -%}
+        </div>
+      </fieldset>
+    {%- endfor -%}
+  {%- endunless -%}
+</div>
+
 {% schema %}
 {
   "name": "Product detail",

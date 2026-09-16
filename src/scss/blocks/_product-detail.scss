@@ -1,0 +1,199 @@
+@use '../abstracts' as *;
+
+// Cột thông tin bên phải trang product — markup ở blocks/_product-detail.liquid.
+//
+// Hai số đo dưới đây không nằm trong thang token toàn cục của
+// css-variables.liquid (thang spacing nhảy 32 → 40, không có 37). Khai làm
+// custom property cục bộ ngay tại gốc block: vẫn chỉ một nơi duy nhất để sửa,
+// không rải magic number xuống từng rule.
+.product-detail {
+  --pd-swatch-size: 37px; // Figma #4:98 — đường kính ô màu
+  --pd-check-size: 12px; // chiều cao dấu tick trong ô màu đang chọn
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+// ── Title ──────────────────────────────────────────────────────────────────
+// --text-h3 tự đổi 24px → 40px ở mốc 990px, không cần media query ở đây.
+.product-detail__title {
+  @include heading(var(--text-h3));
+
+  color: var(--color-text);
+}
+
+// ── Giá ────────────────────────────────────────────────────────────────────
+.product-detail__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-12);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.product-detail__price-current {
+  color: var(--color-text);
+}
+
+.product-detail__price-compare {
+  color: var(--color-text-subtle);
+  text-decoration-line: line-through;
+}
+
+// ── Description ────────────────────────────────────────────────────────────
+// Rich text từ merchant → reset margin của thẻ con đầu/cuối để khoảng cách
+// dọc do gap của .product-detail quyết định, không do <p> mặc định.
+// :empty ẩn hẳn khi sản phẩm chưa có mô tả, nếu không gap vẫn tính chỗ trống.
+.product-detail__description {
+  padding-block-end: var(--space-16);
+  border-block-end: 1px solid var(--color-border);
+  font-size: var(--text-base);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+
+  &:empty {
+    display: none;
+  }
+
+  > :first-child {
+    margin-block-start: 0;
+  }
+
+  > :last-child {
+    margin-block-end: 0;
+  }
+}
+
+// ── Option — phần chung ────────────────────────────────────────────────────
+// min-inline-size: 0 là bắt buộc: <fieldset> mặc định lấy min-content làm
+// chiều rộng tối thiểu, đủ để phá cột grid khi tên value dài.
+.product-detail__option {
+  min-inline-size: 0;
+  padding: 0 0 var(--space-16);
+  margin: 0;
+  border: 0;
+  border-block-end: 1px solid var(--color-border);
+
+  // Fieldset cuối cùng không cần vạch ngăn — dưới nó là cart row (chưa làm).
+  &:last-child {
+    padding-block-end: 0;
+    border-block-end: 0;
+  }
+}
+
+// <legend> có layout riêng trong fieldset; display: block + inline-size: 100%
+// đưa nó về hành xử như một block bình thường để margin-block-end ăn.
+.product-detail__option-label {
+  display: block;
+  inline-size: 100%;
+  padding: 0;
+  margin-block-end: var(--space-16);
+  font-size: var(--text-base);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+}
+
+// Tên value đang chọn in đậm màu hơn phần nhãn — "Color: Red".
+.product-detail__option-label [data-selected-value] {
+  color: var(--color-text);
+}
+
+.product-detail__option-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+}
+
+// Radio thật bị ẩn khỏi mắt nhưng vẫn nhận Tab và screen reader đọc được.
+// Trạng thái chọn hiển thị qua `:checked + label`, chạy được cả khi chưa có JS.
+.product-detail__option-input {
+  @include visually-hidden;
+}
+
+.product-detail__option-value {
+  // <label> mặc định là inline — không nhận inline-size/block-size của swatch.
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
+}
+
+// Input ẩn nên vòng focus phải vẽ trên <label>, nếu không bàn phím mất dấu.
+.product-detail__option-input:focus-visible + .product-detail__option-value {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+// ── Option — biến thể swatch (ô màu tròn) ──────────────────────────────────
+// --swatch do Liquid ghi inline từ value.swatch.color.
+// box-shadow inset thay cho border: viền nằm trong kích thước, màu trắng hoặc
+// màu nhạt không bị tan vào nền trang mà ô vẫn đúng 37×37.
+.product-detail__option--swatch .product-detail__option-value {
+  position: relative;
+  inline-size: var(--pd-swatch-size);
+  block-size: var(--pd-swatch-size);
+  background-color: var(--swatch, var(--color-surface));
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+// Dấu tick vẽ bằng 2 cạnh border của một ô vuông xoay 45° — không tốn asset.
+.product-detail__option--swatch .product-detail__option-input:checked + .product-detail__option-value::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: calc(var(--pd-check-size) * 0.6);
+  block-size: var(--pd-check-size);
+  border: solid var(--color-white);
+  border-width: 0 2px 2px 0;
+  translate: -50% -60%;
+  rotate: 45deg;
+}
+
+// ── Option — biến thể pill (chip chữ) ──────────────────────────────────────
+.product-detail__option--pill .product-detail__option-value {
+  padding: var(--space-12) var(--space-20);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-base);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--color-text);
+  }
+}
+
+.product-detail__option--pill .product-detail__option-input:checked + .product-detail__option-value {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
+// ── Desktop ────────────────────────────────────────────────────────────────
+// Mốc 990px khớp $breakpoints('lg') và @media trong css-variables.liquid.
+@media screen and (min-width: 990px) {
+  .product-detail {
+    gap: var(--space-20);
+  }
+
+  .product-detail__price {
+    font-size: var(--text-2xl);
+  }
+
+  .product-detail__description {
+    padding-block-end: var(--space-24);
+    font-size: var(--text-md);
+  }
+
+  .product-detail__option {
+    padding-block-end: var(--space-24);
+  }
+}

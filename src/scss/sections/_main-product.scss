@@ -1,0 +1,20 @@
+@use '../abstracts' as *;
+
+// Khung trang product: gallery bên trái, cột thông tin bên phải.
+// Section đã gắn class "container" trong schema nên gutter 2 lề có sẵn,
+// ở đây chỉ lo chia cột và khoảng cách dọc.
+.main-product__grid {
+  display: grid;
+  gap: var(--space-20);
+  padding-block: var(--space-20);
+}
+
+// Mốc 990px khớp $breakpoints('lg') và @media trong css-variables.liquid.
+@media screen and (min-width: 990px) {
+  .main-product__grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: var(--space-40);
+    padding-block: var(--space-40);
+  }
+}

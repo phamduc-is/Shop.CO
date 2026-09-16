@@ -1,0 +1,5 @@
+// Style riêng cho từng static block Shopify (thư mục blocks/ của theme).
+// Cây thư mục này phản chiếu 1:1 cây theme — không nhét vào components/,
+// nơi đó chỉ dành cho thứ dùng lại nhiều chỗ (button, badge, rating, card).
+
+@forward 'product-detail';
