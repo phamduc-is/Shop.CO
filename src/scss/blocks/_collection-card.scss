@@ -1,0 +1,61 @@
+@use '../abstracts' as *;
+.collection-grid {
+  --cg-gap: var(--space-16);
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--cg-gap);
+}
+
+.collection-grid__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  color: inherit;
+  text-decoration: none;
+}
+.collection-grid__media {
+  aspect-ratio: var(--card-aspect-ratio);
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-thumb);
+}
+
+.collection-grid__image {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.collection-grid__content {
+  text-align: var(--card-alignment);
+}
+
+.collection-grid__title {
+  display: inline;
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-body);
+  color: var(--color-text);
+}
+
+.collection-grid__count {
+  margin-inline-start: var(--space-8);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+  color: var(--color-text-muted);
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 990px) {
+  .collection-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .collection-grid__title {
+    font-size: var(--text-lg);
+  }
+}

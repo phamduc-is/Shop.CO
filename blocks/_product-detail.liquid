@@ -44,9 +44,9 @@
       >
         <legend class="product-detail__option-label">
           {{ option.name }}
-          {%- if is_swatch -%}
+          {% comment %} {%- if is_swatch -%}
             : <span data-selected-value>{{ option.selected_value }}</span>
-          {%- endif -%}
+          {%- endif -%} {% endcomment %}
         </legend>
 
         <div class="product-detail__option-values">

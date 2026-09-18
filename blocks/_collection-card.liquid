@@ -1,0 +1,125 @@
+{% doc %}
+
+  @example
+  {% content_for 'block', type: '_collection-card', id: 'collection-card' %}
+{% enddoc %}
+
+{%- liquid
+  assign card_aspect_ratio = block.settings.aspect_ratio | default: '1/1'
+  assign card_alignment = block.settings.alignment | default: 'left'
+  assign show_product_count = block.settings.show_count_collection
+-%}
+
+<ul
+  class="collection-grid"
+  role="list"
+  style="--card-aspect-ratio: {{ card_aspect_ratio }}; --card-alignment: {{ card_alignment }};"
+  {{ block.shopify_attributes }}
+>
+  {%- for collection in collections -%}
+    {%- liquid
+      assign card_image = collection.image
+      unless card_image
+        assign card_image = collection.products.first.featured_image
+      endunless
+
+      assign card_image_alt = card_image.alt | default: collection.title
+
+      assign card_loading = 'lazy'
+      if forloop.index <= 3
+        assign card_loading = 'eager'
+      endif
+    -%}
+
+    <li>
+      <a class="collection-grid__card" href="{{ collection.url }}">
+        <div class="collection-grid__media">
+          {%- if card_image -%}
+            {{
+              card_image
+              | image_url: width: 1200
+              | image_tag:
+                class: 'collection-grid__image',
+                alt: card_image_alt,
+                loading: card_loading,
+                widths: '200,300,400,500,600,800,1000,1200',
+                sizes: '(min-width: 990px) calc((100vw - 232px) / 3), calc((100vw - 48px) / 2)'
+            }}
+          {%- else -%}
+            {{ 'collection-1' | placeholder_svg_tag: 'collection-grid__image' }}
+          {%- endif -%}
+        </div>
+
+        <div class="collection-grid__content">
+          <h3 class="collection-grid__title">{{ collection.title }}</h3>
+          {%- if show_product_count -%}
+            <span class="collection-grid__count">{{ collection.all_products_count }}</span>
+          {%- endif -%}
+        </div>
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>
+
+{% schema %}
+{
+  "name": "Collection card",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Aspect ratio",
+      "options": [
+        {
+          "value": "1/1",
+          "label": "Square"
+        },
+        {
+          "value": "4/5",
+          "label": "Portrait"
+        },
+        {
+          "value": "16/9",
+          "label": "Landscape"
+        }
+      ],
+      "default": "1/1"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count_collection",
+      "label": "Show product count",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

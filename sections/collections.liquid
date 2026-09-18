@@ -1,0 +1,19 @@
+<h2 class="collections__heading">{{ section.settings.heading }}</h2>
+
+{% content_for 'block', id: 'collection-card', type: '_collection-card' %}
+{% schema %}
+{
+  "name": "Collection List",
+  "tag": "section",
+  "class": "container section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Collections"
+    }
+  ],
+  "enabled_on": { "templates": ["list-collections"] }
+}
+{% endschema %}

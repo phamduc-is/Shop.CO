@@ -1,0 +1,10 @@
+@use '../abstracts' as *;
+
+// Trang /collections — sections/collections.liquid.
+// Section chỉ có heading; toàn bộ grid do static block _collection-card render,
+// style ở blocks/_collection-card.scss.
+.collections__heading {
+  @include heading(var(--text-h1));
+
+  margin-block-end: var(--space-32);
+}
