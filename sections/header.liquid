@@ -49,25 +49,29 @@
   </ul>
 
   {% comment %} Search box {% endcomment %}
-  <form action="{{ routes.search_url }}" method="get" role="search" class="header__search">
-    <label class="visually-hidden" for="header-search">
-      {{ 'general.search.search' | t }}
-    </label>
+  <predictive-search class="header__search-wrap"data-url="{{ routes.predictive_search_url }}">
+    <form action="{{ routes.search_url }}" method="get" role="search" class="header__search">
+      <label class="visually-hidden" for="header-search">
+        {{ 'general.search.search' | t }}
+      </label>
 
-    {{ 'search-icon.svg' | inline_asset_content }}
+      {{ 'search-icon.svg' | inline_asset_content }}
 
-    <input
-      type="search"
-      class="header__search-input"
-      id="header-search"
-      name="q"
-      value="{{ search.terms | escape }}"
-      placeholder="{{ 'general.search.search_for_products' | t }}"
-      autocomplete="off"
-    >
+      <input
+        type="search"
+        class="header__search-input"
+        id="header-search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'general.search.search_for_products' | t }}"
+        autocomplete="off"
+      >
 
-    <input type="hidden" name="options[prefix]" value="last">
-  </form>
+      <input type="hidden" name="options[prefix]" value="last">
+    </form>
+
+    <div class="predictive-search" data-results hidden></div>
+  </predictive-search>
 
   {% comment %} Cart + Account {% endcomment %}
   <div class="header__actions">

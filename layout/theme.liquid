@@ -19,9 +19,10 @@
 
   <body>
     {% sections 'header-group' %}
-    
+
     {{ content_for_layout }}
 
     {% sections 'footer-group' %}
+    <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>

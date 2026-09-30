@@ -7,7 +7,10 @@
     },
     "search": {
       "search": "Search",
-      "search_for_products": "Search for products..."
+      "search_for_products": "Search for products...",
+      "view_all": "View all results",
+      "no_results": "No results for “{{ terms }}”"
+
     },
     "cart": {
       "cart": "Cart"
